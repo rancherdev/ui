@@ -9,10 +9,10 @@ HEADER {
   .logo {
     display: inline-block;
     height: $navbar-height;
-    width: 68px;
-    background-image: url('images/logos/main.svg');
-    background-color: $logo-bg;
+    width: 175px;
+    background-image: url('images/logos/header-logo.svg');
     background-position: center center;
+    background-color: #00558b;
     background-repeat: no-repeat;
   }
 
@@ -64,7 +64,7 @@ HEADER {
     .navbar-brand {
       margin: 0!important;
       float: none;
-      background-size: auto 25px;
+      background-size: auto 180px;
     }
 
     .navbar-toggle {

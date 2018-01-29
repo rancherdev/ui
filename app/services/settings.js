@@ -175,14 +175,7 @@ export default Ember.Service.extend(Ember.Evented, {
   }.property('rancherImage'),
 
   appName: function() {
-    if ( this.get('isRancher') )
-    {
-      return this.get('app.appName'); // Rancher
-    }
-    else
-    {
-      return this.get('_plValue');
-    }
+    return '中国电信容器云平台';
   }.property('isRancher','_plValue'),
 
   minDockerVersion: Ember.computed.alias(`asMap.${C.SETTING.MIN_DOCKER}.value`),

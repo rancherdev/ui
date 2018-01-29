@@ -707,7 +707,7 @@ k8sTab:
       helpText: |
         '或通过下面的命令行直接运行 <code>kubectl</code> 命令:'
 loginPage:
-  greeting: "你好！<br>欢迎使用 {appName}"
+  greeting: "你好！欢迎使用 <br> {appName}"
   githubMessage: "{appName} 使用GitHub管理账号和团队。点击以下按钮以登录，我们将仅使用基本的GitHub账号信息。"
   shibbolethMessage: "{appName}使用Shibboleth管理账号。点击以下按钮以登录到设置的Shibboleth IDP."
   shibbolethError:
@@ -2271,7 +2271,7 @@ loginUserPass:
   userPlaceholder: '例如:jsmith'
   loginLabel: 登录
   loggingInLabel: 登录中...
-  passwordLabl: 密码
+  passwordLabel: 密码
 
 machine:
   driverAmazon:
