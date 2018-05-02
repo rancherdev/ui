@@ -20,7 +20,7 @@
 
 {{#if (eq type 'artifactory')}}
 
-  {{#if enabled}}
+  {{#if (and enabled publicEndpoints.length1)}}
     <div class="banner bg-success">
       <div class="banner-icon p-20"><i class="icon icon-success"></i></div>
       <div class="banner-message p-20">
@@ -28,6 +28,13 @@
         {{#if artifactoryUrl}}
           <a href="{{artifactoryUrl}}" target="_blank">Artifactory Native UI</a>
         {{/if}}
+      </div>
+    </div>
+  {{else if enabled}}
+    <div class="banner bg-success">
+      <div class="banner-icon p-20"><i class="icon icon-success"></i></div>
+      <div class="banner-message p-20">
+        Deploying Artifactory...
       </div>
     </div>
   {{/if}}

@@ -10,7 +10,7 @@ export default Controller.extend(NewOrEdit, {
   type: 'none',
 
   catalogApp: alias('model.catalogApp'),
-  enabled: alias('catalogApp.id'),
+  enabled: alias('catalogApp.id'),  
   publicEndpoints: alias('model.artifactoryWorkload.publicEndpoints'),
 
   intl: service(),
