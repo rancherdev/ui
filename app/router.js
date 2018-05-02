@@ -50,6 +50,7 @@ Router.map(function() {
       this.route('edit');
 
       this.mount('pipeline');
+      this.route('registries');
 
       this.route('nodes', function() {
         this.route('index', {path: '/'});

@@ -1,0 +1,171 @@
+<section class="header clearfix">
+  <h1 class="pull-left text-capitalize">{{t 'artifactoryPage.header'}}</h1>
+</section>
+
+<div class="row nav nav-boxes checked-current mv-30 {{if (eq currentTarget 'embedded') 'embedded'}} registries-types">
+  {{#each types as |item|}}
+    {{#link-to "authenticated.cluster.registries" (query-params type=item.type)
+          alt=item.label
+          classNames=(concat "col span-2 nav-box-item driver " item.css)
+          disabled=item.disabled
+          href=false
+    }}
+      {{#if item.label}}
+        <p style="position:absolute;bottom:-10px;">{{t item.label}}</p>
+      {{/if}}
+    {{/link-to}}
+  {{/each}}
+</div>
+<hr/>
+
+{{#if (eq type 'artifactory')}}
+
+  {{#if enabled}}
+    <div class="banner bg-success">
+      <div class="banner-icon p-20"><i class="icon icon-success"></i></div>
+      <div class="banner-message p-20">
+        Artifactory is enabled.
+        {{#if artifactoryUrl}}
+          <a href="{{artifactoryUrl}}" target="_blank">Artifactory Native UI</a>
+        {{/if}}
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="box">
+    {{#unless enabled}}
+      <p class="mt-0">
+        Don't have a license? Start a <a href="https://jfrog.com/artifactory/free-trial/" target="_blank">free trial</a>
+      </p>
+    {{/unless}}
+    {{input-text-file
+        label='artifactoryPage.license.label'
+        value=answers.licenses
+        canChangeName=false
+        nameRequired=true
+        accept="text/plain,.key"
+        minHeight=60
+        placeholder='artifactoryPage.license.placeholder'
+        shouldChangeName=false
+    }}
+  </div>
+
+  <div class="box mt-20">
+    <h4>{{t 'artifactoryPage.adminUser.header'}}</h4>
+    <p>
+      Once installation is complete, Artifactory has a default user with admin privileges predefined:
+      <ul>
+        <li> User: admin </li>
+        <li> Password: password</li>
+      </ul>
+      We strongly recommend you changing the admin password instead of using the default one.
+    </p>
+    <div class="row">
+      <div class="col span-6">
+        <div class="acc-label"> {{t 'artifactoryPage.adminUser.newPassword.label'}} </div>
+        {{input type="password" value=answers.newInitPassword placeholder=(t 'artifactoryPage.adminUser.newPassword.placeholder')}}
+      </div>
+      <div class="col span-6">
+        <div class="acc-label"> {{t 'artifactoryPage.adminUser.newPasswordAgain.label'}} </div>
+        {{input type="password" value=passwordAgain placeholder=(t 'artifactoryPage.adminUser.newPasswordAgain.placeholder')}}
+      </div>
+    </div>
+  </div>
+
+  <div class="box mt-20">
+    <h4>{{t 'artifactoryPage.configuration.header'}}</h4>
+    <div>
+      <span class="pr-10">{{t 'artifactoryPage.configuration.serviceType.label'}}:</span>
+
+      <label class="mr-10">
+        {{radio-button selection=answers.serviceType value="NodePort"}}
+        {{t 'artifactoryPage.configuration.serviceType.nodePort'}}
+      </label>
+      <label class="mr-10">
+        {{radio-button selection=answers.serviceType value="LoadBalancer"}}
+        {{t 'artifactoryPage.configuration.serviceType.loadBalancer'}}
+      </label>
+    </div>
+    <div class="mt-10">
+      <span class="pr-10">{{t 'artifactoryPage.configuration.persistence.label'}}:</span>
+      <label class="mr-10">
+        {{radio-button selection=answers.enablePersistence value=false}}
+        {{t 'artifactoryPage.configuration.persistence.disable'}}
+      </label>
+      <label class="mr-20">
+        {{radio-button selection=answers.enablePersistence value=true}}
+        {{t 'artifactoryPage.configuration.persistence.enable'}}
+      </label>
+    </div>
+
+    {{#unless more}}
+      <div class="mt-20">
+        <button class="btn bg-transparent p-0" {{action "toggle"}}>
+          {{t 'artifactoryPage.configuration.more'}}
+        </button>
+      </div>
+    {{/unless}}
+    {{#if more}}
+      <div class="row">
+        <div class="col span-6">
+          <label class="acc-label">{{t 'artifactoryPage.configuration.cpuRequests.label'}}</label>
+          {{input-number
+              min=1
+              type="number"
+              value=answers.requestsCpu
+              className="form-control"
+              placeholder=(t 'artifactoryPage.configuration.cpuRequests.placeholder')
+          }}
+        </div>
+
+        <div class="col span-6">
+          <label class="acc-label">{{t 'artifactoryPage.configuration.cpuLimits.label'}}</label>
+          {{input-number
+              min=1
+              type="number"
+              value=answers.limitsCpu
+              className="form-control"
+              placeholder=(t 'artifactoryPage.configuration.cpuLimits.placeholder')
+          }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col span-6">
+          <label class="acc-label">{{t 'artifactoryPage.configuration.memRequests.label'}}</label>
+          {{input-number
+              min=500
+              type="number"
+              value=answers.requestsMemory
+              className="form-control"
+              placeholder=(t 'artifactoryPage.configuration.memRequests.placeholder')
+          }}
+        </div>
+        <div class="col span-6">
+          <label class="acc-label">{{t 'artifactoryPage.configuration.memLimits.label'}}</label>
+          {{input-number
+              min=1000
+              type="number"
+              value=answers.limitsMemory
+              className="form-control"
+              placeholder=(t 'artifactoryPage.configuration.memLimits.placeholder')
+          }}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+{{else}}
+  <div class="banner bg-info">
+    <div class="banner-icon p-20"><i class="icon icon-info"></i></div>
+    <div class="banner-message p-20">
+      {{#if enabled}}
+        Artifactory is enabled, click save to disable it.
+      {{else}}
+        Artifactory is disabled.
+      {{/if}}
+    </div>
+  </div>
+{{/if}}
+
+{{top-errors errors=errors}}
+{{save-cancel saveDisabled=saveDisabled disabled=true cancelDisabled=true editing=true save="save"}}

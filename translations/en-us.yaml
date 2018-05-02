@@ -1413,6 +1413,53 @@ notifierPage:
       noData: There are no notifiers defined
       noMatch: No Match
 
+artifactoryPage:
+  header: Registries
+  enabled: Artifactory is enabled
+  enable: Enable Artifactory
+  enabling: Enabling
+  disabling: Disabling
+  disable: Disable Artifactory
+  dangerZone: "Danger Zone&trade;"
+  types:
+    none: None
+  sureToDisableArtifactory: Are you sure to disable artifactory?
+  license:
+    label: License Key
+    placeholder: Your Artifactory license key
+  adminUser:
+    header: Default Admin User
+    newPassword:
+      label: New Password
+      placeholder: New Password
+    newPasswordAgain:
+      label: New Password Again
+      placeholder: Retype New Password
+  configuration:
+    header: Artifactory Configuration
+    more: Show Adcanced Options
+    persistence:
+      label: Persistence Volume
+      enable: Enable
+      disable: Disable
+    serviceType:
+      label: Service Type
+      nodePort: Node Port
+      clusterIp: Cluster IP
+      ingress: Ingress
+      loadBalancer: Load Balancer
+    cpuRequests:
+      label: CPU Requests (Core)
+      placeholder: e.g. 1
+    cpuLimits:
+      label: CPU Limits (Core)
+      placeholder: e.g. 4
+    memRequests:
+      label: Memory Requests (M)
+      placeholder: e.g. 500
+    memLimits:
+      label: Memory Limits (M)
+      placeholder: e.g. 2000
 ##############################
 # Partials
 ##############################
@@ -5329,10 +5376,10 @@ nav:
     alerts: Alerts
     notifiers: Notifiers
     logging: Logging
+    registries: Registries
   project:
     none: Grouped Projects/Namespaces
     namespaces: Namespaces
-
 
 ##############################
 # Resource Actions

@@ -1,7 +1,7 @@
 .logging-targets.nav-boxes.checked-current.embedded .current:after {
   z-index: 999;
 }
-.nav-boxes.logging-targets {
+.nav-boxes.logging-targets, .nav-boxes.registries-types {
   .nav-box-item {
     opacity           : 1;
     background-color  : white;
@@ -87,6 +87,11 @@
   .syslog {
     background-image: url('images/providers/syslog.svg');
     background-size: 150px 150px;
+  }
+
+  .artifactory {
+    background-image: url('images/providers/jfrog-artifactory.svg');
+    background-size: 160px 160px;
   }
 }
 

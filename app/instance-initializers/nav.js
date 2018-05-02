@@ -216,6 +216,14 @@ const rootNav = [
         ctx: [getClusterId],
         resourceScope: 'cluster',
       },
+      {divider: true},
+      {
+        id: 'cluster-tools-registries',
+        localizedLabel: 'nav.tools.registries',
+        route: 'authenticated.cluster.registries',
+        ctx: [getClusterId],
+        resourceScope: 'cluster',
+      },
     ],
   },
 
