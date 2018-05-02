@@ -1437,7 +1437,7 @@ artifactoryPage:
       placeholder: Retype New Password
   configuration:
     header: Artifactory Configuration
-    more: Show Adcanced Options
+    more: Show Advanced Options
     persistence:
       label: Persistence Volume
       enable: Enable
