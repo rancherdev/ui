@@ -47,12 +47,16 @@ export default Route.extend({
 
     return hash({
       dataMap: promise,
+      projectDockerCredentials: store.findAll('dockerCredential'),
+      namespacedDockerCredentials: store.findAll('namespacedDockerCredential'),
       clusterLogging,
       projectLogging,
     }).then(hash => {
       return {
         loggingEnabled: hash.clusterLogging || hash.projectLogging,
         dataMap: hash.dataMap,
+        projectDockerCredentials: hash.projectDockerCredentials,
+        namespacedDockerCredentials: hash.namespacedDockerCredentials,
       }
     })
   },
