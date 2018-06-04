@@ -1,0 +1,13 @@
+<div>
+  <h3>{{t 'editPipelineConfig.pushConfig'}}:</h3>
+  <hr/>
+
+  <div class="container-header-text display-name">
+    {{#each branches as |branch|}}
+        <div>{{branch}}</div>
+    {{/each}}
+  </div>
+
+</div>
+
+{{save-cancel createLabel="generic.confirm" save="save" cancel="cancel"}}
