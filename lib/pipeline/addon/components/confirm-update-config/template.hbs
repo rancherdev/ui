@@ -1,0 +1,33 @@
+<div>
+  <h2>{{t 'editPipelineConfig.confirmSave.title'}}</h2>
+  <hr/>
+
+  {{#unless pushConfig}}
+    <div class="banner bg-info">
+      <div class="banner-icon"><i class="icon icon-info"></i></div>
+      <div class="banner-message pt-10 pb-10">
+        {{t 'editPipelineConfig.confirmSave.helpText' appName=settings.appName htmlSafe=true}}
+      </div>
+    </div>
+  {{/unless}}
+  
+  {{#if pushConfig}}
+    <h3 class="mt-20">
+      <div class="checkbox">
+        <label>
+          {{input type="checkbox" checked=pushConfig}}
+          {{t 'editPipelineConfig.pushConfig'}}
+        </label>
+      </div>
+    </h3>
+  {{/if}}
+
+  <div class="container-header-text display-name">
+    {{#each branches as |branch|}}
+        <div>{{branch}}</div>
+    {{/each}}
+  </div>
+
+</div>
+
+{{save-cancel createLabel="generic.confirm" save="save" cancel="cancel"}}

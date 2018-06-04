@@ -1,0 +1,39 @@
+<h2>
+  {{t 'reloadPipeline.title' name=model.displayName}}
+</h2>
+
+<div class="banner bg-warning">
+  <div class="banner-icon"><span class="icon icon-alert"></span></div>
+  <div class="banner-message">
+    <p>{{t 'reloadPipeline.warning' htmlSafe=true}}</p>
+  </div>
+</div>
+
+<div class="row mb-10">
+  <div class="col span-12 mt-0 mb-0">
+    <div class="radio">
+      <label>{{radio-button selection=mode value="branch"}} {{t 'reloadPipeline.mode.branch'}}</label>
+    </div>
+    <div class="radio">
+      <label>{{radio-button selection=mode value="all"}} {{t 'reloadPipeline.mode.all'}}</label>
+    </div>
+  </div>
+</div>
+
+{{#if (eq mode 'branch')}}
+  <div class="row mb-10">
+    <div class="col span-12">
+      <label class="acc-label">{{t 'reloadPipeline.branch.label'}}{{field-required}}</label>
+      {{searchable-select
+        class="form-control"
+        content=branchesChoices
+        optionValuePath="name"
+        optionLabelPath="name"
+        value=branch
+      }}
+    </div>
+  </div>
+{{/if}}
+
+{{top-errors errors=errors}}
+{{save-cancel editing=editing createLabel="action.reload" save="save" cancel="cancel"}}

@@ -1,0 +1,40 @@
+<h2>
+  {{t 'viewConfigPipeline.title' name=model.displayName}}
+</h2>
+
+{{#if loading}}
+  <i class="icon icon-spinner icon-spin"/> {{t 'generic.loading'}}
+{{else if branchesChoices.length}}
+  <div class="row mb-10">
+    <div class="col span-12">
+      <label class="acc-label">{{t 'viewConfigPipeline.branch.label'}}{{field-required}}</label>
+      {{searchable-select
+        class="form-control"
+        content=branchesChoices
+        value=branch
+      }}
+    </div>
+  </div>
+  <div class="row mb-10">
+    {{#if unsynced}}
+      <div class="banner bg-info">
+        <div class="banner-icon"><i class="icon icon-info"></i></div>
+        <div class="banner-message pt-10 pb-10">
+          {{t 'viewConfigPipeline.configFile.helpText' htmlSafe=true}}
+        </div>
+      </div>
+    {{/if}}
+    {{code-block language='yaml' code=config}}
+    {{copy-to-clipboard tooltipText="" buttonText="copyToClipboard.tooltip" clipboardText=config class="with-clip"}}
+  </div>
+  <div class="footer-actions">
+    <button {{action "cancel"}} class="btn bg-primary">{{t 'generic.closeModal'}}</button>
+  </div>
+{{else}}
+  <div class="mt-20 mb-20">
+    {{t 'viewConfigPipeline.noBranch' htmlSafe=true}}
+  </div>
+  <div class="footer-actions">
+    <button {{action "cancel"}} class="btn bg-primary">{{t 'generic.closeModal'}}</button>
+  </div>
+{{/if}}
