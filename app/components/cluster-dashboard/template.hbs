@@ -1,37 +1,102 @@
 {{#if showDashboard}}
-  {{node-gauges nodes=nodes}}
   <div class="row">
-    {{#each components as |c|}}
-      <div class="col span-3">
+    <div class="col span-3">
+      {{#each components as |c|}}
         <div class="banner {{if c.healthy 'bg-success' 'bg-error'}}">
           <div class="banner-icon"><i class="icon icon-2x {{if c.healthy 'icon-check' 'icon-alert'}}" /></div>
           <div class="banner-message text-left"><p>{{c.name}}</p></div>
         </div>
+      {{/each}}
+      <div class="row-same-height row-full-height mt-50">
+        <div class="span-height span-full-height col-top" style="margin-bottom: 20px;">
+          <div class="no-padding-margin" style="height: 100%;">
+            <div class="text-left">
+              <label class="text-muted">{{t 'clustersPage.provider.label'}}:</label>
+              <span>{{cluster.displayProvider}}</span>
+            </div>
 
+            <hr class="mt-15 mb-15"/>
+
+            <div class="text-left">  
+              <label class="text-muted">{{t 'generic.cpu'}}:</label>
+              {{cluster.cpuTotal}}
+            </div>
+            <hr class="mt-15 mb-15"/>
+
+            <div class="text-left">
+              <label class="text-muted">{{t 'generic.memory'}}:</label>
+              {{cluster.memoryTotal}}
+            </div>
+            <hr class="mt-15 mb-15"/>
+
+            <div class="text-left">
+              <label class="text-muted">{{t 'clustersPage.version.label'}}:</label>
+              <span>{{cluster.version.gitVersion}}</span>
+            </div>
+
+            <hr class="mt-15 mb-15"/>
+
+            <div class="text-left">
+              <label class="text-muted">{{t 'clustersPage.nodes.label'}}:</label>
+              <span>
+                {{#if (eq cluster.state "inactive")}}
+                  {{t 'clusterRow.noHosts'}}
+                {{else}}
+                  {{cluster.machines.length}}
+                {{/if}}
+              </span>
+            </div>
+
+            <hr class="mt-15 mb-15"/>
+
+            <div class="text-left">
+              <label class="text-muted">{{t 'generic.created'}}:</label>
+              <span>
+                {{date-calendar model.cluster.created}}
+              </span>
+            </div>
+
+            <hr class="mt-15 mb-15"/>
+          </div>
+        </div>
       </div>
-    {{/each}}
-  </div>
-  <div class="row">
-    {{#each unhealthyComponents as |component|}}
-      <div class="banner bg-error mt-30">
-        <div class="banner-icon">
-          <i class="icon icon-alert"></i>
-        </div>
-        <div class="banner-message text-left">
-          <p>{{t 'clusterDashboard.alert.component' component=component.name}}</p>
-        </div>
+    </div>
+    <div class="col span-9">
+      <div class="ml-30">
+        {{#each unhealthyComponents as |component|}}
+          <div class="banner bg-error mt-30">
+            <div class="banner-icon">
+              <i class="icon icon-alert"></i>
+            </div>
+            <div class="banner-message text-left">
+              <p>{{t 'clusterDashboard.alert.component' component=component.name}}</p>
+            </div>
+          </div>
+        {{/each}}
+        {{#each inactiveNodes as |node|}}
+          <div class="banner bg-error mt-30">
+            <div class="banner-icon">
+              <i class="icon icon-alert"></i>
+            </div>
+            <div class="banner-message text-left">
+              <p>{{t 'clusterDashboard.alert.node' node=node.displayName}}</p>
+            </div>
+          </div>
+        {{/each}}
+
+        {{#unless monitoringEnalbed}}
+          <div class="row mt-0 mb-0">
+            <div class="pull-right text-small">
+              <button class="btn bg-transparent p-0" {{action "enalbeMonitoring"}}>{{t 'clusterDashboard.enalbeMonitoring'}}</button>
+            </div>
+          </div>
+        {{/unless}}
+        {{#if monitoringEnalbed}}
+          {{cluster-metrics duration=duration}}
+        {{/if}}
+        {{nodes-reservation nodes=nodes}}
       </div>
-    {{/each}}
-    {{#each inactiveNodes as |node|}}
-      <div class="banner bg-error mt-30">
-        <div class="banner-icon">
-          <i class="icon icon-alert"></i>
-        </div>
-        <div class="banner-message text-left">
-          <p>{{t 'clusterDashboard.alert.node' node=node.displayName}}</p>
-        </div>
-      </div>
-    {{/each}}
+    </div>
   </div>
 {{else}}
   {{empty-table

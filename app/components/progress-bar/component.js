@@ -1,10 +1,9 @@
 import Component from '@ember/component';
+import { computed, get } from '@ember/object';
 import layout from './template';
 
 export default Component.extend({
   layout,
-  tagName:    'div',
-  classNames: ['progress'],
 
   color:  '',
   min:    0,
@@ -16,6 +15,11 @@ export default Component.extend({
     this.percentDidChange();
     this.zIndexDidChange();
   },
+
+  tooltipContent: computed('percent', function() {
+    return `${ get(this, 'percent') } %`;
+  }),
+
   percent: function() {
     var min   = this.get('min');
     var max   = this.get('max');

@@ -1,0 +1,31 @@
+{{#if enabled}}
+  <div class="text-center">
+    {{#if confirmDisable}}
+      {{#if disabling}}
+        <button class="btn bg-disabled" disabled="disabled">
+          <i class="icon icon-spinner icon-spin"></i> {{t 'generic.saving'}}
+        </button>
+      {{else}}
+      <button class="btn bg-primary" {{action "disable"}}>
+        <i class="icon icon-alert"></i> {{t 'monitoringPage.actions.confirm'}}
+      </button>
+      {{/if}}
+    {{else}}
+      <button class="btn bg-primary" {{action "promptDisable"}}>
+        <i class="icon icon-umbrella"></i> {{t 'monitoringPage.actions.disable'}}
+      </button>
+    {{/if}}
+  </div>
+{{else}}
+  <div class="banner bg-info">
+    <div class="banner-icon p-20"><i class="icon icon-info"></i></div>
+    <div class="banner-message p-20">
+      {{t 'monitoringPage.helpText.disabled' htmlSafe=true}}
+    </div>
+  </div>
+  <div class="text-center">
+    <button class="btn bg-primary" {{action "enable"}}>
+      {{t 'monitoringPage.actions.enable'}}
+    </button>
+  </div>
+{{/if}}

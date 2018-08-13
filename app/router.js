@@ -83,6 +83,11 @@ Router.map(function() {
 
       this.mount('logging', { path: '/logging' });
       this.mount('alert', { path: '/alerts' });
+
+      this.route('monitoring', function() {
+        this.route('index', { path: '/' });
+      } );
+
       this.route('notifier', { path: '/notifiers' }, function() {
         this.route('index', { path: '/' });
         this.route('new', { path: '/add' });

@@ -822,9 +822,9 @@ containersPage:
 
 clusterDashboard:
   title: 仪表盘
-  cpu: CPU
-  memory: Memory
-  pods: Pods
+  cpu: CPU预留
+  memory: 内存预留
+  pods: Pod用量
   subtitle:
     reserved: "已保留{total}中的{used}"
     used: "已创建{used}个Pod,最多{total}个"

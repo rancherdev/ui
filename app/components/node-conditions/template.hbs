@@ -1,14 +1,10 @@
-<div class="row">
-  {{#each conditions as |c|}}
-  <div class="col span-3">
-    <div class="banner col span-3 m-0 {{if c.healthy 'bg-success' 'bg-error'}}">
-      <div class="banner-icon">
-        <i class="icon icon-check"></i>
-      </div>
-      <div class="banner-message">
-        <p>{{c.name}}</p>
-      </div>
+{{#each conditions as |c|}}
+  <div class="banner {{if c.healthy 'bg-success' 'bg-error'}}">
+    <div class="banner-icon">
+      <i class="icon icon-check"></i>
+    </div>
+    <div class="banner-message">
+      <p>{{c.name}}</p>
     </div>
   </div>
-  {{/each}}
-</div>
+{{/each}}

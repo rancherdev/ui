@@ -9,6 +9,8 @@ export default Controller.extend({
   k8s:               service(),
 
   projectController: controller('authenticated.project'),
+  queryParams:       ['duration'],
+  duration:          'hour',
   tags:              alias('projectController.tags'),
 
   actions: {

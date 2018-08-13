@@ -4,9 +4,13 @@ import Controller from '@ember/controller';
 import { get } from '@ember/object';
 
 export default Controller.extend({
-  launchConfig: null,
+  queryParams:       ['duration'],
+  duration:          'hour',
 
-  service:            alias('model.workload'),
+  launchConfig:      null,
+  monitoringEnalbed: true,
+
+  service:                alias('model.workload'),
 
   displayEnvironmentVars: computed('service.launchConfig.environment', function() {
     var envs = [];
@@ -21,4 +25,5 @@ export default Controller.extend({
 
     return envs;
   }),
+
 });

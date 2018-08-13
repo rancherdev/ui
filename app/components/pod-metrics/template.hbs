@@ -1,0 +1,70 @@
+{{metrics-action 
+  resourceType="pod"
+  id=pod.name
+  duration=duration 
+  dashboardName="Pods"
+  queryAction="query"
+}}
+
+<div class="row mt-30">
+  <div class="col span-4">
+    <h2 class="text-left">{{t 'generic.cpu'}}</h2>
+    {{graph-area
+      model=stats
+      fields=cpuFields
+      formatter="percent"
+      minMax=100
+      loading=loading
+    }}
+  </div>
+
+  <div class="col span-4">
+    <h2 class="text-left">{{t 'generic.memory'}}</h2>
+    {{graph-area
+      model=stats
+      fields=memoryFields
+      formatter="mib"
+      loading=loading
+    }}
+  </div>
+
+  <div class="col span-4">
+    <h2 class="text-left">{{t 'infoMultiStats.diskSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=diskFields
+      formatter="mib"
+      loading=loading
+    }}
+  </div>
+</div>
+
+<div class="row mt-30">
+  <div class="col span-4">
+    <h2 class="text-left">{{t 'infoMultiStats.networkSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=networkFields
+      formatter="kbps"
+      minMax=100
+      loading=loading
+    }}
+  </div>
+  <div class="col span-4">
+    <h2 class="text-left">{{t 'infoMultiStats.networkPacketSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=networkPacketFields
+      loading=loading
+    }}
+  </div>
+  <div class="col span-4">
+    <h2 class="text-left">{{t 'infoMultiStats.storageSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=storageFields
+      formatter="kbps"
+      loading=loading
+    }}
+  </div>
+</div>

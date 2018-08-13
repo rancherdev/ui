@@ -28,7 +28,6 @@
     "babel-eslint": "^9.0.0",
     "broccoli-asset-rev": "^2.7.0",
     "card": "2.4.0",
-    "d3": "3.5.17",
     "dot-object": "^1.7.0",
     "dotenv": "^6.0.0",
     "ember-api-store": "2.7.2",

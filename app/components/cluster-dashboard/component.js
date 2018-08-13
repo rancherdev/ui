@@ -13,11 +13,18 @@ export default Component.extend({
 
   nodes:             null,
   components:        null,
+  monitoringEnalbed: false,
   componentStatuses: alias('scope.currentCluster.componentStatuses'),
 
   init() {
     this._super(...arguments);
     this.setComponents();
+  },
+
+  actions: {
+    enalbeMonitoring() {
+      set(this, 'monitoringEnalbed', true);
+    },
   },
 
   updateComponentsStatus: observer('componentStatuses.@each.conditions', 'nodes.@each.{state}', function() {
