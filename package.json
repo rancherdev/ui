@@ -27,7 +27,6 @@
     "async": "2.1.2",
     "broccoli-asset-rev": "^2.7.0",
     "card": "2.4.0",
-    "d3": "3.5.17",
     "dotenv": "^6.0.0",
     "ember-api-store": "2.6.13",
     "ember-assign-helper": "^0.1.2",

@@ -1,0 +1,98 @@
+{{metrics-action 
+  resourceType="node"
+  duration=duration
+  id=node.nodeName
+  dashboardName="Nodes"
+  queryAction="query"
+}}
+
+<div class="row mt-30">
+  <div class="col span-6 pl-20">
+    <h2 class="text-left">{{t 'infoMultiStats.cpuSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=cpuFields
+      formatter="percent"
+      minMax=100
+      loading=loading
+    }}
+  </div>
+
+  <div class="col span-6">
+    <h2 class="text-left">{{t 'infoMultiStats.loadSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=loadFields
+      minMax=1
+      loading=loading
+    }}
+  </div>
+</div>
+
+<div class="row mt-30">
+ <div class="col span-6 pl-20">
+    <h2 class="text-left">{{t 'infoMultiStats.memorySection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=memoryFields
+      formatter="percent"
+      minMax=100
+      loading=loading
+    }}
+ </div>
+  <div class="col span-6">
+    <h2 class="text-left">{{t 'infoMultiStats.memoryPageSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=memoryPageFields
+      formatter="kbps"
+      loading=loading
+    }}
+  </div>
+</div>
+
+<div class="row mt-30">
+  <div class="col span-6 pl-20">
+    <h2 class="text-left">{{t 'infoMultiStats.diskSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=diskFields
+      formatter="percent"
+      minMax=100
+      loading=loading
+    }}
+  </div>
+  <div class="col span-6">
+    <h2 class="text-left">{{t 'infoMultiStats.storageSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=storageFields
+      formatter="kbps"
+      loading=loading
+    }}
+  </div>
+</div>
+
+<div class="row mt-30">
+  <div class="col span-6 pl-20">
+    <h2 class="text-left">{{t 'infoMultiStats.networkSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=networkFields
+      formatter="kbps"
+      minMax=100
+      loading=loading
+    }}
+  </div>
+
+  <div class="col span-6">
+    <h2 class="text-left">{{t 'infoMultiStats.networkPacketSection.labelText'}}</h2>
+    {{graph-area
+      model=stats
+      fields=networkPacketFields
+      loading=loading
+    }}
+  </div>
+
+</div>
+<hr class="mt-30"/>

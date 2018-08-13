@@ -71,7 +71,6 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
   app.import('node_modules/async/dist/async.js');
-  app.import('node_modules/d3/d3.js');
   app.import('node_modules/identicon.js/pnglib.js');
   app.import('node_modules/identicon.js/identicon.js');
   app.import('node_modules/jgrowl/jquery.jgrowl.css');
@@ -99,6 +98,8 @@ module.exports = function(defaults) {
   app.import('vendor/prompt/prompt-v1-latin-600.woff', { destDir: 'assets/fonts/' });
   app.import('vendor/prompt/prompt-v1-latin-600.woff2', { destDir: 'assets/fonts/' });
   app.import('vendor/aliyun-sdk.js');
+  app.import('vendor/echarts/echarts.min.js');
+  app.import('vendor/echarts/theme.js');
 
   return app.toTree();
 };

@@ -33,50 +33,58 @@
   .hover-line {
     stroke: #9da0ae;
   }
+}
 
-  .hover-label {
-    position: absolute;
-    pointer-events: none;
-    top: 0px;
-    z-index: 20;
-  }
+.duration-tab {
+  margin-left: -5px;
+}
 
-  .graph-area-tooltip {
-    border-collapse: collapse;
-    border-spacing: 0;
-    background-color: #fff;
-    empty-cells: show;
-    box-shadow: 7px 7px 12px -9px #777;
-  }
+.graph-area-tooltip {
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: #fff;
+  empty-cells: show;
+  box-shadow: 7px 7px 12px -9px #777;
+}
 
-  .graph-area-tooltip th {
-    background-color: #aaa;
-    font-size: 14px;
-    padding: 2px 5px;
-    text-align: left;
-    color: #FFF;
-  }
+.graph-area-tooltip th {
+  background-color: #aaa;
+  font-size: 14px;
+  padding: 2px 5px;
+  text-align: left;
+  color: #FFF;
+}
 
-  .graph-area-tooltip tr {
-    border: 1px solid #CCC;
-  }
+.graph-area-tooltip tr {
+  border: 1px solid #CCC;
 
-  .graph-area-tooltip td {
-    font-size: 13px;
-    height: 25px;
-    padding: 3px 6px;
-    background-color: #fff;
-    border-left: 1px dotted #999;
+  th {
+    color: #FFF !important;
   }
+}
 
-  .graph-area-tooltip td > span {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin-right: 6px;
-  }
+.graph-area-tooltip td {
+  font-size: 13px;
+  height: 25px;
+  padding: 3px 6px;
+  background-color: #fff;
+  border-left: 1px dotted #999;
+}
 
-  .graph-area-tooltip td.value {
-    text-align: right;
-  }
+.graph-area-tooltip td > span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+}
+
+.graph-area-tooltip td.value {
+  text-align: right;
+}
+
+.hover-label {
+  position: absolute;
+  pointer-events: none;
+  top: 0px;
+  z-index: 20;
 }

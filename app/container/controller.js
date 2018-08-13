@@ -6,12 +6,17 @@ import { once } from '@ember/runloop';
 export default Controller.extend({
   router: service(),
 
+  queryParams:       ['duration'],
   selectedContainer: null,
+
+  duration:          'hour',
+
+  monitoringEnalbed: true,
 
   actions: {
     select(container) {
       set(this, 'selectedContainer', container);
-    }
+    },
   },
 
   containerDidChange: observer('model.containers.[]', function() {

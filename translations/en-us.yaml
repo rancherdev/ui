@@ -17,6 +17,7 @@ generic:
   cancel: Cancel
   closeModal: Close
   cluster: Cluster
+  cpu: CPUs
   collapseAll: Collapse All
   comingSoon: Coming Soon
   command: Command
@@ -60,6 +61,7 @@ generic:
   loading: "Loading..."
   loggingOut: "Logging out..."
   member: Member
+  memory: Memory
   mibibyte: 'MiB'
   minutes: minutes
   milliseconds: 'Milliseconds'
@@ -112,6 +114,7 @@ generic:
   uuid: UUID
   value: Value
   version: Version
+  workload: workload
   yes: "Yes"
 
 realmNames:
@@ -778,9 +781,9 @@ clustersPage:
   nodes:
     label: Nodes
   cpu:
-    label: CPU
+    label: CPU Reservation
   memory:
-    label: RAM
+    label: RAM Reservation
   pod:
     label: Pods
   storage:
@@ -841,12 +844,16 @@ containersPage:
 
 clusterDashboard:
   title: Dashboard
-  cpu: CPU
-  memory: Memory
-  pods: Pods
+  cpu: CPU Reservation
+  memory: Memory Reservation
+  pods: Pods Utilization
+  grafana: 
+    label: See Grafana Dashboard
+    helpText: Go to Grafana UI to see more metrics of current {type}
   subtitle:
-    reserved: "{used} of {total} reserved"
-    used: "{used} of {total} used"
+    reserved: "{used} of {total} Reserved"
+    used: "{used} of {total} Used"
+  enalbeMonitoring: Enable Monitoring to see live metrics
   node: Nodes
   etcd: etcd
   scheduler: Scheduler
@@ -1002,10 +1009,10 @@ nodesPage:
   table:
     clusterName: Cluster
     role: Roles
-    cpu: CPU
-    memory: RAM
+    cpu: CPU Reservation
+    memory: Memory Reservation
     disk: Disk
-    pod: Pods
+    pod: Pod Usage
     version: Version
     docker: Docker
     unschedulable: Unschedulable
@@ -3467,7 +3474,9 @@ formScopedRoles:
       read-only:
         label: Read-Only
         detail: Allows seeing everything, but not changing anything.
-
+formMonitoring:
+  title: Monitoring
+  detail: Live metrics for the current {type}
 formHealthCheck:
   title: Health Check
   detail: Periodically make a request to the container to see if it is alive and responding correctly.
@@ -4203,21 +4212,44 @@ identityBlock:
 infoMultiStats:
   connecting: Connecting...
   utilizationStats: Utilization stats are only available while active/running.
+  min: 5 MIN
+  hour: HOUR
+  day: DAY
+  week: WEEK
+  cpuUsage: CPU Utilization
+  memoryUsage: Memory Utilization
+  diskUsage: Disk Utilization
+  networkTranTotal: Transmit
+  networkTranError: Transmit Errors
+  networkTranDrop: Transmit Dropped
+  networkTranPacket: Transmit Packets
+  networkRevTotal: Receive
+  networkRevError: Receive Errors
+  networkRevDrop: Receive Dropped
+  networkRevPacket: Receive Packets
+  memoryPageIn: Memory In
+  memoryPageOut: Memory Out
+  storageRead: Read
+  storageWrite: Write
+  load1: 1 minute
+  load5: 5 minutes
+  load15: 15 minutes
   cpuSection:
-    labelText: CPU
-    system: System
-    user: User
+    labelText: CPU Utilization
   networkSection:
-    labelText: Network
-    transmit: Transmit
-    receive: Receive
+    labelText: Network I/O
+  networkPacketSection:
+    labelText: Network Packets
   memorySection:
-    labelText: Memory
-    used: Used
+    labelText: Memory Utilization
+  memoryPageSection:
+    labelText: Memory Pages
+  diskSection:
+    labelText: Disk Utilization
   storageSection:
-    labelText: Storage
-    read: Read
-    write: Write
+    labelText: Disk I/O
+  loadSection:
+    labelText: Load Average
 
 inputAnswers:
   yaml: Edit as YAML

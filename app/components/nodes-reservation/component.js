@@ -1,8 +1,8 @@
 import Component from '@ember/component';
-import { observer } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { formatSi, parseSi, exponentNeeded } from 'shared/utils/parse-unit';
 import layout from './template';
+import { computed } from '@ember/object';
+import { formatSi, parseSi, exponentNeeded } from 'shared/utils/parse-unit';
 
 export default Component.extend({
   intl: service(),
@@ -11,84 +11,36 @@ export default Component.extend({
 
   nodes: null,
 
-  gauges: null,
-
-  init() {
-    this._super(...arguments);
-    setTimeout(() => {
-      this.setDashboard();
-    }, 150);
-  },
-
-  updateDashboard: observer('nodes.@each.{allocatable,requested}', 'intl.locale', function() {
-    this.setDashboard();
-  }),
-
-  setDashboard() {
-    const cpuGauge = this.getCpuGauge();
-    const memoryGauge = this.getMemoryGauge();
-    const podsGauge = this.getPodsGauge();
-
-    this.set('gauges', [cpuGauge, memoryGauge, podsGauge]);
-  },
-
-  getCpuGauge() {
+  cpuReservation: computed('nodes.@each.{allocatable,requested}', 'intl.locale', function() {
     return this.getGauge('cpu',
       (u, t) => formatSi(u, 1000, '', '', 0, exponentNeeded(t), 1).replace(/\s.*$/, ''),
       (t) => formatSi(t, 1000, '', '', 0, exponentNeeded(t), 1), 'reserved',
     );
-  },
+  }),
 
-  getMemoryGauge() {
+  memoryReservation: computed('nodes.@each.{allocatable,requested}', 'intl.locale', function() {
     return this.getGauge('memory',
       (u, t) => formatSi(u, 1024, '', '', 0, exponentNeeded(t), 1).replace(/\s.*$/, ''),
       (t) => formatSi(t, 1024, 'iB', 'B', 0, exponentNeeded(t), 1), 'reserved',
     );
-  },
+  }),
 
-  getPodsGauge() {
+  podUsage: computed('nodes.@each.{allocatable,requested}', 'intl.locale', function() {
     return this.getGauge('pods',
       (u, t) => formatSi(u, 1000, '', '', 0, exponentNeeded(t), 1).replace(/\s.*$/, ''),
       (t) => formatSi(t, 1000, '', '', 0, exponentNeeded(t), 1), 'used',
     );
-  },
+  }),
 
   getGauge(field, usedFormatCb, totalFormatCb, keyword) {
     const nodes = this.getNodes(field);
+    const value = this.getValue(nodes)
 
     return {
-      value:    this.getValue(nodes),
-      title:    this.get('intl').t(`clusterDashboard.${ field }`),
+      percent:  value.percent,
+      value:    value.current,
       subtitle: this.getSubtitle(nodes, totalFormatCb, usedFormatCb, keyword),
-      ticks:    this.getTicks(nodes),
     };
-  },
-
-  getTicks(nodes) {
-    let filtered = [];
-
-    if (nodes.length > 0) {
-      const min = nodes[0].value;
-      const max = nodes[nodes.length - 1].value;
-
-      filtered = nodes.filter((node) => node.value === min || node.value === max);
-    }
-    const ticks = [];
-
-    filtered.forEach((node) => {
-      const found = ticks.find((tick) => tick.value === Math.round(node.value));
-
-      if (found) {
-        found.labels.push(node.node.nodeName);
-      } else {
-        ticks.push({
-          value:  Math.round(node.value),
-          labels: [node.node.nodeName],
-        });
-      }
-    });
-
-    return ticks;
   },
 
   getNodes(field) {
@@ -129,7 +81,10 @@ export default Component.extend({
     });
     const value = Math.round(used * 100 / total);
 
-    return isNaN(value) ? 0 : value;
+    return {
+      percent: isNaN(value) ? 0 : value,
+      current:   used,
+    }
   },
 
   getSubtitle(nodes, totalCb, usedCb, keyword) {
@@ -142,8 +97,8 @@ export default Component.extend({
     });
 
     return this.get('intl').t(`clusterDashboard.subtitle.${ keyword }`, {
-      used:  usedCb ? usedCb(used, total) : used,
-      total: totalCb ? totalCb(total) : total,
+      used:  usedCb ? (usedCb(used, total) || '').trim() : used,
+      total: totalCb ? (totalCb(total) || '').trim() : total,
     });
   },
 });

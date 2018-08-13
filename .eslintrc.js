@@ -52,7 +52,7 @@ module.exports = {
     "_": true,
     "async": true,
     "commonmark": true,
-    "d3": true,
+    "echarts": true,
     "document": true,
     "jQuery": true,
     "jsondiffpatch": true,
