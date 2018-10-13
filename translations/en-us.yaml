@@ -5750,7 +5750,7 @@ monitoringPage:
     confirm: 'Are you sure?  Click again to really disable monitoring'
     disable: Disable Monitoring
   helpText:
-    disabled: 'We will deploy Prometheus to the system project in this cluster. You will be albe to see the live metrics for this cluster if you enable it.'
+    disabled: 'We will deploy Prometheus Operator to System project in this cluster. You will be albe to see the live metrics for this cluster if you enable it.'
 
 vmConsole:
   header: "Console:"

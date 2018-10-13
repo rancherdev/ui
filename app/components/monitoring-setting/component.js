@@ -4,6 +4,8 @@ import { later } from '@ember/runloop';
 import layout from './template';
 
 export default Component.extend({
+  scope: service(),
+
   layout,
 
   confirmDisable: false,
