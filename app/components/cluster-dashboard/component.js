@@ -6,24 +6,26 @@ import { inject as service } from '@ember/service';
 import layout from './template';
 
 export default Component.extend({
-  intl:  service(),
-  scope: service(),
+  intl:   service(),
+  scope:  service(),
+  router: service(),
 
   layout,
 
   nodes:             null,
   components:        null,
-  monitoringEnalbed: false,
+  monitoringEnalbed: alias('scope.currentCluster.enableClusterMonitoring'),
   componentStatuses: alias('scope.currentCluster.componentStatuses'),
 
   init() {
     this._super(...arguments);
     this.setComponents();
+    this.getGrafanaUrl();
   },
 
   actions: {
     enalbeMonitoring() {
-      set(this, 'monitoringEnalbed', true);
+      get(this, 'router').transitionTo('authenticated.cluster.monitoring');
     },
   },
 
@@ -45,40 +47,27 @@ export default Component.extend({
   }),
 
   setComponents() {
-    const etcd = this.getEtcdComponent();
-    const controller = this.getControllerComponent();
-    const scheduler = this.getSchedulerComponent();
-    const node = this.getNodeComponent();
-
-    set(this, 'components', [etcd, controller, scheduler, node]);
+    set(this, 'etcdHealthy', this.isHealthy('etcd'));
+    set(this, 'controllerHealthy', this.isHealthy('controller-manager'));
+    set(this, 'schedulerHealthy', this.isHealthy('scheduler'));
+    set(this, 'nodesHealthy', get(this, 'inactiveNodes.length') === 0);
   },
 
-  getEtcdComponent() {
-    return {
-      name:    get(this, 'intl').t('clusterDashboard.etcd'),
-      healthy: this.isHealthy('etcd'),
-    };
-  },
+  getGrafanaUrl() {
+    const rootUrl = get(this, 'scope.currentCluster.monitoringStatus.grafanaEndpoint');
 
-  getControllerComponent() {
-    return {
-      name:    get(this, 'intl').t('clusterDashboard.controllerManager'),
-      healthy: this.isHealthy('controller-manager'),
-    };
-  },
+    set(this, 'rootUrl', rootUrl);
+    get(this, 'globalStore').rawRequest({
+      url:    `${ rootUrl }/api/search`,
+      method: 'GET',
+    }).then((xhr) => {
+      const dashboards = xhr.body;
 
-  getSchedulerComponent() {
-    return {
-      name:    get(this, 'intl').t('clusterDashboard.scheduler'),
-      healthy: this.isHealthy('scheduler'),
-    };
-  },
-
-  getNodeComponent() {
-    return {
-      name:    get(this, 'intl').t('clusterDashboard.node'),
-      healthy: get(this, 'inactiveNodes.length') === 0,
-    };
+      this.setGrafanaUrl(dashboards, 'ETCD', 'etcd');
+      this.setGrafanaUrl(dashboards, 'Scheduler', 'scheduler');
+      this.setGrafanaUrl(dashboards, 'Controller Manager', 'controller');
+      this.setGrafanaUrl(dashboards, 'Kubernetes Cluster Nodes', 'nodes');
+    });
   },
 
   isHealthy(field) {
@@ -86,4 +75,12 @@ export default Component.extend({
       .filter((s) => s.name.startsWith(field))
       .any((s) => s.conditions.any((c) => c.status === 'True'));
   },
+
+  setGrafanaUrl(dashboards, title, id) {
+    const target = dashboards.findBy('title', title);
+
+    if ( target ) {
+      set(this, `${ id }Url`, get(target, 'url'));
+    }
+  }
 });

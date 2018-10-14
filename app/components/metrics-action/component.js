@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { get, set, observer, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import layout from './template';
+import { next } from '@ember/runloop';
 
 export default Component.extend({
   intl:        service(),
@@ -14,15 +15,17 @@ export default Component.extend({
   duration:      null,
   dashboardName: null,
 
-  loading:    false,
+  refreshing:    false,
   rootUrl:    null,
   grafanaUrl: null,
 
   init() {
     this._super(...arguments);
 
-    this.query();
     this.getGrafanaUrl();
+    next(() => {
+      this.query();
+    });
   },
 
   actions: {
@@ -44,8 +47,7 @@ export default Component.extend({
   }),
 
   getGrafanaUrl() {
-    const clusterId = get(this, 'scope.currentCluster.id');
-    const rootUrl = `${ location.origin }/k8s/clusters/${ clusterId }/api/v1/namespaces/prometheus/services/http:prometheus-grafana:80/proxy`;
+    const rootUrl = get(this, 'scope.currentCluster.monitoringStatus.grafanaEndpoint');
 
     set(this, 'rootUrl', rootUrl);
     get(this, 'globalStore').rawRequest({
@@ -70,7 +72,7 @@ export default Component.extend({
         grafanaUrl += this.getWorkloadGrafanaUrl();
         break;
       case 'pod':
-        grafanaUrl += `?var-namespace=All&var-pod=${ get(this, 'id') }&var-container=All`;
+        grafanaUrl += `?var-namespace=${ get(this, 'namespaceId') }&var-pod=${ get(this, 'id') }&var-container=All`;
         break;
       }
 
@@ -92,7 +94,7 @@ export default Component.extend({
   },
 
   query() {
-    set(this, 'loading', true);
+    set(this, 'refreshing', true);
     let query;
 
     switch ( get(this, 'duration') ) {
@@ -112,7 +114,7 @@ export default Component.extend({
 
     this.sendAction('queryAction', {
       cb: () => {
-        set(this, 'loading', false);
+        set(this, 'refreshing', false);
       },
       query,
     });

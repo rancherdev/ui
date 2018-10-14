@@ -67,6 +67,12 @@
 
 <section>
   {{#accordion-list as |al expandFn|}}
+    {{accordion-pod
+      pods=service.pods
+      expandAll=al.expandAll
+      expandFn=expandFn
+    }}
+
     {{#if monitoringEnalbed}}
       {{#accordion-list-item
         title=(t 'formMonitoring.title')
@@ -78,12 +84,6 @@
         {{workload-metrics workload=service duration=duration}}
       {{/accordion-list-item}}
     {{/if}}
-
-    {{accordion-pod
-      pods=service.pods
-      expandAll=al.expandAll
-      expandFn=expandFn
-    }}
 
     {{resource-event-list
       resourceType=service.displayType

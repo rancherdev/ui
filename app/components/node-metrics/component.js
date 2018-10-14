@@ -3,6 +3,8 @@ import { set, get } from '@ember/object';
 import { inject as service } from '@ember/service';
 import layout from './template';
 
+const fields = ['cpuFields', 'memoryFields', 'diskFields', 'networkPacketFields', 'storageFields', 'networkFields', 'memoryPageFields', 'loadFields'];
+
 export default Component.extend({
   intl:        service(),
   scope:       service(),
@@ -108,6 +110,18 @@ export default Component.extend({
           if (this.isDestroyed || this.isDestroying) {
             return;
           }
+
+          fields.forEach((field) => {
+            const list = get(this, field);
+
+            list.forEach((d) => {
+              const data = get(this, `stats.${ d }`);
+
+              if ( data === undefined ) {
+                set(this, `stats.${ d }`, []);
+              }
+            });
+          });
 
           set(this, 'loading', false);
           options.cb();

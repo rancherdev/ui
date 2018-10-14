@@ -35,6 +35,18 @@ export default Resource.extend(ResourceUsage, {
     return null;
   }),
 
+  isMonitoringReady: computed('monitoringStatus.@each.conditions', function() {
+    const conditions = get(this, 'monitoringStatus.conditions') || [];
+
+    if ( get(conditions, 'length') > 0 ) {
+      const ready = conditions.filterBy('status', 'True') || [] ;
+
+      return get(ready, 'length') === get(conditions, 'length');
+    }
+
+    return false;
+  }),
+
   isReady: computed('conditions.@each.status', function() {
     return this.hasCondition('Ready');
   }),
@@ -94,6 +106,12 @@ export default Resource.extend(ResourceUsage, {
     default:
       return intl.t('clusterNew.import.shortLabel');
     }
+  }),
+
+  systemProject: computed('projects.@each.isSystemProject', function() {
+    let projects = (this.get('projects') || []).filterBy('isSystemProject', true);
+
+    return get(projects, 'firstObject');
   }),
 
   defaultProject: computed('projects.@each.{name,clusterOwner}', function() {
