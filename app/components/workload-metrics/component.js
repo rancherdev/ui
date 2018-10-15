@@ -2,10 +2,11 @@ import Component from '@ember/component';
 import { set, get } from '@ember/object';
 import { inject as service } from '@ember/service';
 import layout from './template';
+import Grafana from 'shared/mixins/grafana';
 
 const fields = ['cpuFields', 'memoryFields', 'diskFields', 'networkPacketFields', 'networkFields', 'storageFields'];
 
-export default Component.extend({
+export default Component.extend(Grafana, {
   intl:        service(),
   scope:       service(),
   globalStore: service(),
@@ -18,7 +19,6 @@ export default Component.extend({
   memoryFields:        ['memoryUsage'],
   diskFields:          ['diskUsage'],
   networkPacketFields: ['networkTranPacket', 'networkRevPacket', 'networkTranError', 'networkRevError', 'networkTranDrop',   'networkRevDrop'],
-
   networkFields:       ['networkRevTotal', 'networkTranTotal'],
   storageFields:       ['storageWrite', 'storageRead'],
 
@@ -32,7 +32,7 @@ export default Component.extend({
       set(this, 'loading', true);
 
       get(this, 'globalStore').rawRequest({
-        url:    `projects/${ projectId }/podstats/${ get(this, 'pod.id') }?${ options.query }`,
+        url:    `projects/${ projectId }/workloadstats/${ get(this, 'workload.id') }?${ options.query }`,
         method: 'GET',
       })
         .then((xhr) => {
@@ -48,43 +48,43 @@ export default Component.extend({
             const points = get(serie, 'points');
 
             switch (name){
-            case 'pod_cpu_usage_seconds_sum_rate':
+            case 'workload_cpu_usage_seconds_sum_rate':
               set(this, 'stats.cpuUsage', points.map((p) => [p[0] * 100, p[1]]));
               break;
-            case 'pod_memory_usage_bytes_sum':
+            case 'workload_memory_usage_bytes_sum':
               set(this, 'stats.memoryUsage', points.map((p) => [p[0] / 1048576, p[1]]));
               break;
-            case 'pod_fs_byte_sum':
+            case 'workload_fs_byte_sum':
               set(this, 'stats.diskUsage', points.map((p) => [p[0] / 1048576, p[1]]));
               break;
-            case 'pod_network_receive_bytes_sum_rate':
+            case 'workload_network_receive_bytes_sum_rate':
               set(this, 'stats.networkRevTotal', points.map((p) => [p[0] / 1024, p[1]]));
               break;
-            case 'pod_network_receive_errors_sum_rate':
+            case 'workload_network_receive_errors_sum_rate':
               set(this, 'stats.networkRevError', points);
               break;
-            case 'pod_network_receive_packets_sum_rate':
+            case 'workload_network_receive_packets_sum_rate':
               set(this, 'stats.networkRevPacket', points);
               break;
-            case 'pod_network_receive_packets_dropped_sum_rate':
+            case 'workload_network_receive_packets_dropped_sum_rate':
               set(this, 'stats.networkRevDrop', points);
               break;
-            case 'pod_network_transmit_bytes_sum_rate':
+            case 'workload_network_transmit_bytes_sum_rate':
               set(this, 'stats.networkTranTotal', points.map((p) => [p[0] / 1024, p[1]]));
               break;
-            case 'pod_network_transmit_errors_sum_rate':
+            case 'workload_network_transmit_errors_sum_rate':
               set(this, 'stats.networkTranError', points);
               break;
-            case 'pod_network_transmit_packets_sum_rate':
+            case 'workload_network_transmit_packets_sum_rate':
               set(this, 'stats.networkTranPacket', points);
               break;
-            case 'pod_network_transmit_packets_dropped_sum_rate':
+            case 'workload_network_transmit_packets_dropped_sum_rate':
               set(this, 'stats.networkTranDrop', points);
               break;
-            case 'pod_disk_io_reads_bytes_sum_rate':
+            case 'workload_disk_io_reads_bytes_sum_rate':
               set(this, 'stats.storageRead', points.map((p) => [p[0] / 1024, p[1]]));
               break;
-            case 'pod_disk_io_writes_bytes_sum_rate':
+            case 'workload_disk_io_writes_bytes_sum_rate':
               set(this, 'stats.storageWrite', points.map((p) => [p[0] / 1024, p[1]]));
               break;
             }
