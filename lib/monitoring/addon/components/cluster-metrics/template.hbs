@@ -1,436 +1,119 @@
-<section class="header has-tabs clearfix pb-0 text-left">
-  <ul class="tab-nav">
-    <li>
-      <a class="{{if (eq mode 'cluster') 'active'}} hand no-select" {{action 'toggle' 'cluster'}}>
-        {{t 'clusterDashboard.sections.cluster'}}
-      </a>
-    </li>
-  </ul>
-  <ul class="tab-nav">
-    <li>
-      <a class="{{if (eq mode 'k8s') 'active'}} hand no-select" {{action 'toggle' 'k8s'}}>
-        {{t 'clusterDashboard.sections.k8s'}}
-      </a>
-    </li>
-  </ul>
-  <ul class="tab-nav">
-    <li>
-      <a class="{{if (eq mode 'nodes') 'active'}} hand no-select" {{action 'toggle' 'nodes'}}>
-        {{t 'clusterDashboard.sections.nodes'}}
-      </a>
-    </li>
-  </ul>
-  <ul class="tab-nav">
-    <li>
-      <a class="{{if (eq mode 'reservation') 'active'}} hand no-select" {{action 'toggle' 'reservation'}}>
-        {{t 'clusterDashboard.sections.reservation'}}
-      </a>
-    </li>
-  </ul>
+<section>
+  {{metrics-action
+    duration=duration
+    dashboardName="Cluster"
+    queryAction="query"
+  }}
+  <div class="row mt-30">
+    <div class="col span-6 pl-20">
+      <h2 class="text-left">{{t 'infoMultiStats.cpuSection.labelText'}}</h2>
+      {{graph-area
+        model=stats
+        fields=cpuFields
+        formatter="percent"
+        minMax=100
+        loading=loading
+      }}
+    </div>
+
+    <div class="col span-6">
+      <h2 class="text-left">{{t 'infoMultiStats.loadSection.labelText'}}</h2>
+      {{graph-area
+        model=stats
+        fields=loadFields
+        minMax=1
+        loading=loading
+      }}
+    </div>
+  </div>
+
+  <div class="row mt-30">
+  <div class="col span-6 pl-20">
+      <h2 class="text-left">{{t 'infoMultiStats.memorySection.labelText'}}</h2>
+      {{graph-area
+        model=stats
+        fields=memoryFields
+        formatter="percent"
+        minMax=100
+        loading=loading
+      }}
+    </div>
+    <div class="col span-6">
+        <h2 class="text-left">{{t 'infoMultiStats.memoryPageSection.labelText'}}</h2>
+        {{graph-area
+          model=stats
+          fields=memoryPageFields
+          formatter="kbps"
+          loading=loading
+        }}
+      </div>
+  </div>
+
+  <div class="row mt-30">
+    <div class="col span-6 pl-20">
+      <h2 class="text-left">{{t 'infoMultiStats.diskSection.labelText'}}</h2>
+      {{graph-area
+        model=stats
+        fields=diskFields
+        formatter="percent"
+        minMax=100
+        loading=loading
+      }}
+    </div>
+    <div class="col span-6">
+      <h2 class="text-left">{{t 'infoMultiStats.storageSection.labelText'}}</h2>
+      {{graph-area
+        model=stats
+        fields=storageFields
+        formatter="kbps"
+        loading=loading
+      }}
+    </div>
+  </div>
+
+  <div class="row mt-30">
+    <div class="col span-6 pl-20">
+      <h2 class="text-left">{{t 'infoMultiStats.networkSection.labelText'}}</h2>
+      {{graph-area
+        model=stats
+        fields=networkFields
+        formatter="kbps"
+        minMax=100
+        loading=loading
+      }}
+    </div>
+    <div class="col span-6">
+      <h2 class="text-left">{{t 'infoMultiStats.networkPacketSection.labelText'}}</h2>
+      {{graph-area
+        model=stats
+        fields=networkPacketFields
+        loading=loading
+      }}
+    </div>
+
+  </div>
+
+  <div class="row mt-30">
+    <div class="col span-6 pl-20">
+      <h2 class="text-left">Top 5 Memory Intense Pods</h2>
+      {{graph-area
+        model=stats
+        fields=cpuFields
+        formatter="percent"
+        minMax=100
+        loading=loading
+      }}
+    </div>
+
+    <div class="col span-6">
+      <h2 class="text-left">Top 5 CPU Containers</h2>
+      {{graph-area
+        model=stats
+        fields=cpuFields
+        formatter="percent"
+        minMax=100
+        loading=loading
+      }}
+    </div>
+  </div>
 </section>
-
-{{#if (eq mode 'cluster')}}
-  <section>
-    {{metrics-action
-      duration=duration
-      dashboardName="Cluster"
-      queryAction="query"
-    }}
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">{{t 'infoMultiStats.cpuSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">{{t 'infoMultiStats.loadSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=loadFields
-          minMax=1
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-    <div class="col span-6 pl-20">
-        <h2 class="text-left">{{t 'infoMultiStats.memorySection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=memoryFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-          <h2 class="text-left">{{t 'infoMultiStats.memoryPageSection.labelText'}}</h2>
-          {{graph-area
-            model=stats
-            fields=memoryPageFields
-            formatter="kbps"
-            loading=loading
-          }}
-        </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">{{t 'infoMultiStats.diskSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=diskFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-        <h2 class="text-left">{{t 'infoMultiStats.storageSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=storageFields
-          formatter="kbps"
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">{{t 'infoMultiStats.networkSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=networkFields
-          formatter="kbps"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-        <h2 class="text-left">{{t 'infoMultiStats.networkPacketSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=networkPacketFields
-          loading=loading
-        }}
-      </div>
-
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">Top 5 Memory Intense Pods</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">Top 5 CPU Containers</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-    </div>
-  </section>
-{{/if}}
-
-{{#if (eq mode 'k8s')}}
-  <section>
-    {{metrics-action
-      duration=duration
-      dashboardName="Cluster"
-      queryAction="query"
-    }}
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">Etcd Memory</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">Etcd Network</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">Etcd CPU</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">Etcd DB Size</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">Etcd RPC Rate</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">Etcd Active Streams</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">Etcd Snapshot Duration</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">Etcd Disk Sync Duration</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">API Server CPU</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">API Server Memory</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">API Server Rate</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">API Server Latencies</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">Scheduler CPU</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">Scheduler Memory</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-    </div>
-  </section>
-{{/if}}
-
-{{#if (eq mode 'nodes')}}
-  <section>
-    {{metrics-action
-      duration=duration
-      dashboardName="Kubernetes Cluster Nodes"
-      queryAction="query"
-    }}
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">{{t 'infoMultiStats.cpuSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=cpuFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">{{t 'infoMultiStats.loadSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=loadFields
-          minMax=1
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-    <div class="col span-6 pl-20">
-        <h2 class="text-left">{{t 'infoMultiStats.memorySection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=memoryFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-          <h2 class="text-left">{{t 'infoMultiStats.memoryPageSection.labelText'}}</h2>
-          {{graph-area
-            model=stats
-            fields=memoryPageFields
-            formatter="kbps"
-            loading=loading
-          }}
-        </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">{{t 'infoMultiStats.diskSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=diskFields
-          formatter="percent"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-        <h2 class="text-left">{{t 'infoMultiStats.storageSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=storageFields
-          formatter="kbps"
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">{{t 'infoMultiStats.networkSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=networkFields
-          formatter="kbps"
-          minMax=100
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-        <h2 class="text-left">{{t 'infoMultiStats.networkPacketSection.labelText'}}</h2>
-        {{graph-area
-          model=stats
-          fields=networkPacketFields
-          loading=loading
-        }}
-      </div>
-
-    </div>
-  </section>
-{{/if}}
-
-
-{{#if (eq mode 'reservation')}}
-  <section>
-    <div class="row mt-30">
-      {{nodes-reservation nodes=nodes}}
-    </div>
-  </section>
-{{/if}}

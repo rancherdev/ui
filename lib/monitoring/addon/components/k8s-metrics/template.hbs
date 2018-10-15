@@ -1,0 +1,174 @@
+  <section>
+    {{metrics-action
+      duration=duration
+      dashboardName="Cluster"
+      queryAction="query"
+    }}
+    <div class="row mt-30">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">Etcd Memory</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+
+      <div class="col span-6">
+        <h2 class="text-left">Etcd Network</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+    </div>
+
+    <div class="row mt-30">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">Etcd CPU</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+
+      <div class="col span-6">
+        <h2 class="text-left">Etcd DB Size</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+    </div>
+
+    <div class="row mt-30">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">Etcd RPC Rate</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+
+      <div class="col span-6">
+        <h2 class="text-left">Etcd Active Streams</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+    </div>
+
+    <div class="row mt-30">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">Etcd Snapshot Duration</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+
+      <div class="col span-6">
+        <h2 class="text-left">Etcd Disk Sync Duration</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+    </div>
+
+    <div class="row mt-30">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">API Server CPU</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+
+      <div class="col span-6">
+        <h2 class="text-left">API Server Memory</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+    </div>
+
+    <div class="row mt-30">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">API Server Rate</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+
+      <div class="col span-6">
+        <h2 class="text-left">API Server Latencies</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+    </div>
+
+    <div class="row mt-30">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">Scheduler CPU</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+
+      <div class="col span-6">
+        <h2 class="text-left">Scheduler Memory</h2>
+        {{graph-area
+          model=stats
+          fields=cpuFields
+          formatter="percent"
+          minMax=100
+          loading=loading
+        }}
+      </div>
+    </div>
+  </section>
