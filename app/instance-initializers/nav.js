@@ -235,7 +235,7 @@ const rootNav = [
       {
         id:             'cluster-tools-monitoring',
         localizedLabel: 'nav.tools.monitoring',
-        route:          'authenticated.cluster.monitoring',
+        route:          'authenticated.cluster.monitoring.cluster-setting',
         resourceScope:  'global',
         resource:       [],
         ctx:            [getClusterId],

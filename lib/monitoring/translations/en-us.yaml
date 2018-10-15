@@ -77,7 +77,7 @@ infoMultiStats:
 monitoringPage:
   title: Cluster Monitoring
   disabled: Monitoring is disabled in the current cluster.
-  ready: Monitoring is ready! System monitoring tool has been deployed to 
+  ready: Monitoring is ready. System monitoring tool has been deployed to 
   notReady: Monitoring API is not ready. You can find system monitoring tool in
   actions:
     enable: Enable Monitoring
