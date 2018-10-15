@@ -5,13 +5,12 @@ import { once } from '@ember/runloop';
 
 export default Controller.extend({
   router: service(),
+  scope:  service(),
 
   queryParams:       ['duration'],
   selectedContainer: null,
 
   duration:          'hour',
-
-  monitoringEnalbed: true,
 
   actions: {
     select(container) {
@@ -34,6 +33,11 @@ export default Controller.extend({
       }
     }
   }),
+
+  monitoringEnabled: computed('scope.currentCluster.isMonitoringReady', function() {
+    return get(this, 'scope.currentCluster.isMonitoringReady');
+  }),
+
   displayEnvironmentVars: computed('selectedContainer', function() {
     var envs = [];
     var environment = this.get('selectedContainer.environment') || {};

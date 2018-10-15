@@ -48,6 +48,9 @@ export default Resource.extend(ResourceUsage, {
   }),
 
   isMonitoringReady: computed('monitoringStatus.@each.conditions', function() {
+    if ( !get(this, 'enableClusterMonitoring') ) {
+      return false;
+    }
     const conditions = get(this, 'monitoringStatus.conditions') || [];
 
     if ( get(conditions, 'length') > 0 ) {

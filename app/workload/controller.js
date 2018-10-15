@@ -2,15 +2,21 @@ import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
-  queryParams:       ['duration'],
-  duration:          'hour',
+  scope:       service(),
 
-  launchConfig:      null,
-  monitoringEnalbed: true,
+  queryParams: ['duration'],
+  duration:    'hour',
 
-  service:                alias('model.workload'),
+  launchConfig: null,
+
+  service: alias('model.workload'),
+
+  monitoringEnabled: computed('scope.currentCluster.isMonitoringReady', function() {
+    return get(this, 'scope.currentCluster.isMonitoringReady');
+  }),
 
   displayEnvironmentVars: computed('service.launchConfig.environment', function() {
     var envs = [];

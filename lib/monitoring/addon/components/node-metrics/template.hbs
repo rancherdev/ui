@@ -1,6 +1,7 @@
 {{metrics-action 
   resourceType="node"
   duration=duration
+  dashboards=dashboards
   id=node.ipAddress
   dashboardName="Nodes"
   queryAction="query"
@@ -95,28 +96,3 @@
   </div>
 
 </div>
-
-<div class="row mt-30">
-  <div class="col span-6 pl-20">
-    <h2 class="text-left">Top 5 Memory Intense Pods</h2>
-    {{graph-area
-      model=stats
-      fields=cpuFields
-      formatter="percent"
-      minMax=100
-      loading=loading
-    }}
-  </div>
-
-  <div class="col span-6">
-    <h2 class="text-left">Top 5 CPU Containers</h2>
-    {{graph-area
-      model=stats
-      fields=cpuFields
-      formatter="percent"
-      minMax=100
-      loading=loading
-    }}
-  </div>
-</div>
-<hr class="mt-30"/>

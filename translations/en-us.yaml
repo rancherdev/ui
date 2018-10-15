@@ -115,6 +115,7 @@ generic:
   value: Value
   version: Version
   yes: "Yes"
+  workload: workload
 
 realmNames:
   all: All

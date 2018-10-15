@@ -9,6 +9,8 @@ clusterDashboard:
     nodes: Nodes Metrics
     k8s: Kubernetes Components Metrics
     reservation: Cluster Reservation
+    node: Node Metrics
+    nodeReservation: Node Reservation
   cpu: CPU Reservation
   memory: Memory Reservation
   pods: Pods Utilization

@@ -10,20 +10,14 @@
   {{/each}}
 </section>
 
-{{#if (eq mode 'cluster')}}
-  {{cluster-metrics duration=duration dashboards=dashboards}}
+{{#if (eq mode 'node')}}
+  {{node-metrics node=node duration=duration dashboards=dashboards}}
 {{/if}}
 
-{{#if (eq mode 'k8s')}}
-  {{k8s-metrics duration=duration}}
-{{/if}}
-
-{{#if (eq mode 'nodes')}}
-  {{all-nodes-metrics duration=duration}}
-{{/if}}
-
-{{#if (eq mode 'reservation')}}
+{{#if (eq mode 'nodeReservation')}}
   <section>
     {{nodes-reservation nodes=nodes}}
   </section>
 {{/if}}
+
+<hr class="mt-30"/>
