@@ -15,7 +15,7 @@ clusterDashboard:
   more: More
   grafana: 
     label: See Grafana Dashboard
-    helpText: Go to Grafana UI to see more metrics of current {type}
+    helpText: Go to Grafana UI to see more metrics
   subtitle:
     reserved: "{used} of {total} Reserved"
     used: "{used} of {total} Used"
@@ -30,50 +30,7 @@ clusterDashboard:
   alert:
     node: "Alert: Node {node} is not active."
     component: "Alert: Component {component} is unhealthy."
-formMonitoring:
-  title: Monitoring
-  detail: Live metrics for the current {type}
-infoMultiStats:
-  connecting: Connecting...
-  utilizationStats: Utilization stats are only available while active/running.
-  min: 5 MIN
-  hour: HOUR
-  day: DAY
-  week: WEEK
-  cpuUsage: CPU Utilization
-  memoryUsage: Memory Utilization
-  diskUsage: Disk Utilization
-  networkTranTotal: Transmit
-  networkTranError: Transmit Errors
-  networkTranDrop: Transmit Dropped
-  networkTranPacket: Transmit Packets
-  networkRevTotal: Receive
-  networkRevError: Receive Errors
-  networkRevDrop: Receive Dropped
-  networkRevPacket: Receive Packets
-  memoryPageIn: Memory In
-  memoryPageOut: Memory Out
-  storageRead: Read
-  storageWrite: Write
-  load1: 1 minute
-  load5: 5 minutes
-  load15: 15 minutes
-  cpuSection:
-    labelText: CPU Utilization
-  networkSection:
-    labelText: Network I/O
-  networkPacketSection:
-    labelText: Network Packets
-  memorySection:
-    labelText: Memory Utilization
-  memoryPageSection:
-    labelText: Memory Pages
-  diskSection:
-    labelText: Disk Utilization
-  storageSection:
-    labelText: Disk I/O
-  loadSection:
-    labelText: Load Average
+    
 monitoringPage:
   title: Cluster Monitoring
   disabled: Monitoring is disabled in the current cluster.
@@ -86,3 +43,7 @@ monitoringPage:
     disable: Disable Monitoring
   helpText:
     disabled: 'We will use Prometheus to collect metrics from Nodes, Kubernetes components and Pods in this cluster.'
+
+formMonitoring:
+  title: Monitoring
+  detail: Live metrics for the current {type}

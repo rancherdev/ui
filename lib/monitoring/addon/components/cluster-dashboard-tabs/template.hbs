@@ -11,7 +11,7 @@
 </section>
 
 {{#if (eq mode 'cluster')}}
-  {{cluster-metrics duration=duration}}
+  {{cluster-metrics duration=duration dashboards=dashboards}}
 {{/if}}
 
 {{#if (eq mode 'k8s')}}

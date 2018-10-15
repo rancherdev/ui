@@ -4308,21 +4308,44 @@ identityBlock:
 infoMultiStats:
   connecting: Connecting...
   utilizationStats: Utilization stats are only available while active/running.
+  min: 5 MIN
+  hour: HOUR
+  day: DAY
+  week: WEEK
+  cpuUsage: CPU Utilization
+  memoryUsage: Memory Utilization
+  diskUsage: Disk Utilization
+  networkTranTotal: Transmit
+  networkTranError: Transmit Errors
+  networkTranDrop: Transmit Dropped
+  networkTranPacket: Transmit Packets
+  networkRevTotal: Receive
+  networkRevError: Receive Errors
+  networkRevDrop: Receive Dropped
+  networkRevPacket: Receive Packets
+  memoryPageIn: Memory In
+  memoryPageOut: Memory Out
+  storageRead: Read
+  storageWrite: Write
+  load1: 1 minute
+  load5: 5 minutes
+  load15: 15 minutes
   cpuSection:
-    labelText: CPU
-    system: System
-    user: User
+    labelText: CPU Utilization
   networkSection:
-    labelText: Network
-    transmit: Transmit
-    receive: Receive
+    labelText: Network I/O
+  networkPacketSection:
+    labelText: Network Packets
   memorySection:
-    labelText: Memory
-    used: Used
+    labelText: Memory Utilization
+  memoryPageSection:
+    labelText: Memory Pages
+  diskSection:
+    labelText: Disk Utilization
   storageSection:
-    labelText: Storage
-    read: Read
-    write: Write
+    labelText: Disk I/O
+  loadSection:
+    labelText: Load Average
 
 inputAnswers:
   yaml: Edit as YAML

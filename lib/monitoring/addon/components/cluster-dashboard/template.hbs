@@ -31,7 +31,7 @@
         {{/each}}
           
         {{#if (and monitoringEnalbed scope.currentCluster.isMonitoringReady)}}
-          {{cluster-dashboard-tabs duration=duration nodes=nodes}}
+          {{cluster-dashboard-tabs duration=duration nodes=nodes dashboards=dashboards}}
         {{else if monitoringEnalbed}}
           <div class="row mt-0 mb-0">
             <div class="pull-right text-small text-error">

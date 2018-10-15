@@ -1,12 +1,13 @@
 <section>
   {{metrics-action
     duration=duration
+    dashboards=dashboards
     dashboardName="Cluster"
     queryAction="query"
   }}
   <div class="row mt-30">
     <div class="col span-6 pl-20">
-      <h2 class="text-left">{{t 'metrics.cpuSection.labelText'}}</h2>
+      <h2 class="text-left">{{t 'infoMultiStats.cpuSection.labelText'}}</h2>
       {{graph-area
         model=stats
         fields=cpuFields
@@ -17,7 +18,7 @@
     </div>
 
     <div class="col span-6">
-      <h2 class="text-left">{{t 'metrics.loadSection.labelText'}}</h2>
+      <h2 class="text-left">{{t 'infoMultiStats.loadSection.labelText'}}</h2>
       {{graph-area
         model=stats
         fields=loadFields
@@ -29,7 +30,7 @@
 
   <div class="row mt-30">
   <div class="col span-6 pl-20">
-      <h2 class="text-left">{{t 'metrics.memorySection.labelText'}}</h2>
+      <h2 class="text-left">{{t 'infoMultiStats.memorySection.labelText'}}</h2>
       {{graph-area
         model=stats
         fields=memoryFields
@@ -39,7 +40,7 @@
       }}
     </div>
     <div class="col span-6">
-        <h2 class="text-left">{{t 'metrics.memoryPageSection.labelText'}}</h2>
+        <h2 class="text-left">{{t 'infoMultiStats.memoryPageSection.labelText'}}</h2>
         {{graph-area
           model=stats
           fields=memoryPageFields
@@ -51,7 +52,7 @@
 
   <div class="row mt-30">
     <div class="col span-6 pl-20">
-      <h2 class="text-left">{{t 'metrics.diskSection.labelText'}}</h2>
+      <h2 class="text-left">{{t 'infoMultiStats.diskSection.labelText'}}</h2>
       {{graph-area
         model=stats
         fields=diskFields
@@ -61,7 +62,7 @@
       }}
     </div>
     <div class="col span-6">
-      <h2 class="text-left">{{t 'metrics.storageSection.labelText'}}</h2>
+      <h2 class="text-left">{{t 'infoMultiStats.storageSection.labelText'}}</h2>
       {{graph-area
         model=stats
         fields=storageFields
@@ -73,7 +74,7 @@
 
   <div class="row mt-30">
     <div class="col span-6 pl-20">
-      <h2 class="text-left">{{t 'metrics.networkSection.labelText'}}</h2>
+      <h2 class="text-left">{{t 'infoMultiStats.networkSection.labelText'}}</h2>
       {{graph-area
         model=stats
         fields=networkFields
@@ -83,7 +84,7 @@
       }}
     </div>
     <div class="col span-6">
-      <h2 class="text-left">{{t 'metrics.networkPacketSection.labelText'}}</h2>
+      <h2 class="text-left">{{t 'infoMultiStats.networkPacketSection.labelText'}}</h2>
       {{graph-area
         model=stats
         fields=networkPacketFields
