@@ -3,9 +3,11 @@
   <div class="banner-message text-left">
     <p>
       {{t label}}
-      <span class="pull-right text-small" style="text-align: right;">
-        <a href={{url}} class={{if url "" "disabled"}} target="_blank" rel="nofollow noopener noreferrer">{{t 'clusterDashboard.more'}}</a>
-      </span>
+      {{#if url}}
+        <span class="pull-right text-small" style="text-align: right;">
+          <a href={{url}} target="_blank" rel="nofollow noopener noreferrer">{{t 'clusterDashboard.more'}}</a>
+        </span>
+      {{/if}}
     </p>
   </div>
 </div>

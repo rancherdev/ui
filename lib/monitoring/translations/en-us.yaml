@@ -79,6 +79,7 @@ monitoringPage:
   disabled: Monitoring is disabled in the current cluster.
   ready: Monitoring is ready. System monitoring tool has been deployed to 
   notReady: Monitoring API is not ready. You can find system monitoring tool in
+  justDeployed: Deploying system monitoring tool to
   actions:
     enable: Enable Monitoring
     confirm: 'Are you sure?  Click again to really disable monitoring'

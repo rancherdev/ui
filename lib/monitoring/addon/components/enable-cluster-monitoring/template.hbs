@@ -7,11 +7,11 @@
 
 {{#if enabled}}
   <section>
-    <div class="banner {{if isReady 'bg-success' 'bg-error'}}">
-      <div class="banner-icon"><i class="icon icon-2x {{if isReady 'icon-check' 'icon-alert'}}" /></div>
+    <div class="banner {{if (or isReady justDeployed) 'bg-success' 'bg-error'}}">
+      <div class="banner-icon"><i class="icon icon-2x {{if (or isReady justDeployed) 'icon-check' 'icon-alert'}}" /></div>
       <div class="banner-message text-left">
         <p>
-          {{if isReady (t 'monitoringPage.ready' htmlSafe=true) (t 'monitoringPage.notReady' htmlSafe=true)}} <a href="{{href-to 'apps-tab' cluster.systemProject.id}}">{{cluster.systemProject.displayName}}</a> {{t 'generic.project'}}.
+          {{t (concat 'monitoringPage.' status) htmlSafe=true}} <a href="{{href-to 'apps-tab' cluster.systemProject.id}}">{{cluster.systemProject.displayName}}</a> {{t 'generic.project'}}.
         </p>
       </div>
     </div>

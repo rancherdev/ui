@@ -1,63 +1,11 @@
 {{#if showDashboard}}
   <div class="row">
     <div class="col span-3">
-      {{grafana-link label='clusterDashboard.etcd' healthy=etcdHealthy url=etcdUrl}}
-      {{grafana-link label='clusterDashboard.controllerManager' healthy=controllerHealthy url=controllerUrl}}
-      {{grafana-link label='clusterDashboard.scheduler' healthy=schedulerHealthy url=schedulerUrl}}
-      {{grafana-link label='clusterDashboard.node' healthy=nodesHealthy url=nodesUrl}}
-      <div class="row-same-height row-full-height mt-50">
-        <div class="span-height span-full-height col-top" style="margin-bottom: 20px;">
-          <div class="no-padding-margin" style="height: 100%;">
-            <div class="text-left">
-              <label class="text-muted">{{t 'clustersPage.provider.label'}}:</label>
-              <span>{{cluster.displayProvider}}</span>
-            </div>
-
-            <hr class="mt-15 mb-15"/>
-
-            <div class="text-left">  
-              <label class="text-muted">{{t 'generic.cpu'}}:</label>
-              {{cluster.cpuTotal}}
-            </div>
-            <hr class="mt-15 mb-15"/>
-
-            <div class="text-left">
-              <label class="text-muted">{{t 'generic.memory'}}:</label>
-              {{cluster.memoryTotal}}
-            </div>
-            <hr class="mt-15 mb-15"/>
-
-            <div class="text-left">
-              <label class="text-muted">{{t 'clustersPage.version.label'}}:</label>
-              <span>{{cluster.version.gitVersion}}</span>
-            </div>
-
-            <hr class="mt-15 mb-15"/>
-
-            <div class="text-left">
-              <label class="text-muted">{{t 'clustersPage.nodes.label'}}:</label>
-              <span>
-                {{#if (eq cluster.state "inactive")}}
-                  {{t 'clusterRow.noHosts'}}
-                {{else}}
-                  {{cluster.machines.length}}
-                {{/if}}
-              </span>
-            </div>
-
-            <hr class="mt-15 mb-15"/>
-
-            <div class="text-left">
-              <label class="text-muted">{{t 'generic.created'}}:</label>
-              <span>
-                {{date-calendar model.cluster.created}}
-              </span>
-            </div>
-
-            <hr class="mt-15 mb-15"/>
-          </div>
-        </div>
-      </div>
+      {{k8s-component-status label='clusterDashboard.etcd' healthy=etcdHealthy url=etcdUrl}}
+      {{k8s-component-status label='clusterDashboard.controllerManager' healthy=controllerHealthy url=controllerUrl}}
+      {{k8s-component-status label='clusterDashboard.scheduler' healthy=schedulerHealthy url=schedulerUrl}}
+      {{k8s-component-status label='clusterDashboard.node' healthy=nodesHealthy url=nodesUrl}}
+      {{cluster-basic-info cluster=cluster}}
     </div>
     <div class="col span-9">
       <div class="ml-30">
