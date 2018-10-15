@@ -285,3 +285,8 @@
 .link[disabled] {
   pointer-events: none;
 }
+
+a.disabled {
+  cursor: default;
+  transition: ease-in-out all .25s;
+}

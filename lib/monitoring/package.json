@@ -1,5 +1,5 @@
 {
-  "name": "nodes",
+  "name": "monitoring",
   "keywords": [
     "ember-addon",
     "ember-engine"
@@ -7,7 +7,6 @@
   "dependencies": {
     "ember-intl": "*",
     "ember-auto-import": "*",
-    "ember-intl": "*",
     "ember-cli-htmlbars": "*",
     "ember-cli-babel": "*"
   },

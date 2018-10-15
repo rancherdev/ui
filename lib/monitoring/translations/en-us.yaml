@@ -1,0 +1,87 @@
+generic:
+  cpu: CPU
+  memory: Memory
+
+clusterDashboard:
+  title: Dashboard
+  sections:
+    cluster: Cluster Metrics
+    nodes: Nodes Metrics
+    k8s: Kubernetes Components Metrics
+    reservation: Cluster Reservation
+  cpu: CPU Reservation
+  memory: Memory Reservation
+  pods: Pods Utilization
+  more: More
+  grafana: 
+    label: See Grafana Dashboard
+    helpText: Go to Grafana UI to see more metrics of current {type}
+  subtitle:
+    reserved: "{used} of {total} Reserved"
+    used: "{used} of {total} Used"
+  enalbeMonitoring: Enable Monitoring to see live metrics
+  monitoringNotReady: Monitoring API is not ready
+  node: Nodes
+  etcd: etcd
+  scheduler: Scheduler
+  controllerManager: Controller Manager
+  value: Value
+  noNodes: There are no nodes.
+  alert:
+    node: "Alert: Node {node} is not active."
+    component: "Alert: Component {component} is unhealthy."
+formMonitoring:
+  title: Monitoring
+  detail: Live metrics for the current {type}
+infoMultiStats:
+  connecting: Connecting...
+  utilizationStats: Utilization stats are only available while active/running.
+  min: 5 MIN
+  hour: HOUR
+  day: DAY
+  week: WEEK
+  cpuUsage: CPU Utilization
+  memoryUsage: Memory Utilization
+  diskUsage: Disk Utilization
+  networkTranTotal: Transmit
+  networkTranError: Transmit Errors
+  networkTranDrop: Transmit Dropped
+  networkTranPacket: Transmit Packets
+  networkRevTotal: Receive
+  networkRevError: Receive Errors
+  networkRevDrop: Receive Dropped
+  networkRevPacket: Receive Packets
+  memoryPageIn: Memory In
+  memoryPageOut: Memory Out
+  storageRead: Read
+  storageWrite: Write
+  load1: 1 minute
+  load5: 5 minutes
+  load15: 15 minutes
+  cpuSection:
+    labelText: CPU Utilization
+  networkSection:
+    labelText: Network I/O
+  networkPacketSection:
+    labelText: Network Packets
+  memorySection:
+    labelText: Memory Utilization
+  memoryPageSection:
+    labelText: Memory Pages
+  diskSection:
+    labelText: Disk Utilization
+  storageSection:
+    labelText: Disk I/O
+  loadSection:
+    labelText: Load Average
+monitoringPage:
+  title: Cluster Monitoring
+  disabled: Monitoring is disabled in the current cluster.
+  ready: Monitoring is ready! System monitoring tool has been deployed to 
+  notReady: Monitoring API is not ready. You can find system monitoring tool in
+  actions:
+    enable: Enable Monitoring
+    confirm: 'Are you sure?  Click again to really disable monitoring'
+    disable: Disable Monitoring
+  helpText:
+    disabled: 'We will use Prometheus to collect metrics from Nodes, Kubernetes components and Pods in this cluster.'

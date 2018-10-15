@@ -184,6 +184,22 @@ const App = Application.extend({
         }
       }
     },
+    monitoring: {
+      dependencies: {
+        services: [
+          'app',
+          'intl',
+          'scope',
+          'session',
+          'modal',
+          'globalStore',
+          'router',
+          'k8s',
+          'clusterStore',
+        ],
+        externalRoutes: {}
+      }
+    },
   }
 });
 
