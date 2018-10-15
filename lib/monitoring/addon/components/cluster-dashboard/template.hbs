@@ -1,0 +1,116 @@
+{{#if showDashboard}}
+  <div class="row">
+    <div class="col span-3">
+      {{grafana-link label='clusterDashboard.etcd' healthy=etcdHealthy url=etcdUrl}}
+      {{grafana-link label='clusterDashboard.controllerManager' healthy=controllerHealthy url=controllerUrl}}
+      {{grafana-link label='clusterDashboard.scheduler' healthy=schedulerHealthy url=schedulerUrl}}
+      {{grafana-link label='clusterDashboard.node' healthy=nodesHealthy url=nodesUrl}}
+      <div class="row-same-height row-full-height mt-50">
+        <div class="span-height span-full-height col-top" style="margin-bottom: 20px;">
+          <div class="no-padding-margin" style="height: 100%;">
+            <div class="text-left">
+              <label class="text-muted">{{t 'clustersPage.provider.label'}}:</label>
+              <span>{{cluster.displayProvider}}</span>
+            </div>
+
+            <hr class="mt-15 mb-15"/>
+
+            <div class="text-left">  
+              <label class="text-muted">{{t 'generic.cpu'}}:</label>
+              {{cluster.cpuTotal}}
+            </div>
+            <hr class="mt-15 mb-15"/>
+
+            <div class="text-left">
+              <label class="text-muted">{{t 'generic.memory'}}:</label>
+              {{cluster.memoryTotal}}
+            </div>
+            <hr class="mt-15 mb-15"/>
+
+            <div class="text-left">
+              <label class="text-muted">{{t 'clustersPage.version.label'}}:</label>
+              <span>{{cluster.version.gitVersion}}</span>
+            </div>
+
+            <hr class="mt-15 mb-15"/>
+
+            <div class="text-left">
+              <label class="text-muted">{{t 'clustersPage.nodes.label'}}:</label>
+              <span>
+                {{#if (eq cluster.state "inactive")}}
+                  {{t 'clusterRow.noHosts'}}
+                {{else}}
+                  {{cluster.machines.length}}
+                {{/if}}
+              </span>
+            </div>
+
+            <hr class="mt-15 mb-15"/>
+
+            <div class="text-left">
+              <label class="text-muted">{{t 'generic.created'}}:</label>
+              <span>
+                {{date-calendar model.cluster.created}}
+              </span>
+            </div>
+
+            <hr class="mt-15 mb-15"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col span-9">
+      <div class="ml-30">
+        {{#each unhealthyComponents as |component|}}
+          <div class="banner bg-error mt-30">
+            <div class="banner-icon">
+              <i class="icon icon-alert"></i>
+            </div>
+            <div class="banner-message text-left">
+              <p>{{t 'clusterDashboard.alert.component' component=component.name}}</p>
+            </div>
+          </div>
+        {{/each}}
+        {{#each inactiveNodes as |node|}}
+          <div class="banner bg-error mt-30">
+            <div class="banner-icon">
+              <i class="icon icon-alert"></i>
+            </div>
+            <div class="banner-message text-left">
+              <p>{{t 'clusterDashboard.alert.node' node=node.displayName}}</p>
+            </div>
+          </div>
+        {{/each}}
+          
+        {{#if (and monitoringEnalbed scope.currentCluster.isMonitoringReady)}}
+          {{cluster-metrics duration=duration nodes=nodes}}
+        {{else if monitoringEnalbed}}
+          <div class="row mt-0 mb-0">
+            <div class="pull-right text-small text-error">
+              {{t 'clusterDashboard.monitoringNotReady'}}
+            </div>
+          </div>
+        {{else}}
+          <div class="row mt-0 mb-0">
+            <div class="pull-right text-small">
+              <button class="btn bg-transparent p-0" {{action "enalbeMonitoring"}}>{{t 'clusterDashboard.enalbeMonitoring'}}</button>
+            </div>
+          </div>
+        {{/if}}
+
+        {{#unless (and monitoringEnalbed scope.currentCluster.isMonitoringReady)}}
+          {{nodes-reservation nodes=nodes}}
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+{{else}}
+  {{empty-table
+    resource="container"
+    showNew=scope.currentCluster.canAddNode
+    newRoute="authenticated.cluster.nodes.templates"
+    newTranslationKey="nodesPage.addNode"
+    disabled=(rbac-prevents resource="machine" scope="global" permission="create")
+    ctx=""
+  }}
+{{/if}}
