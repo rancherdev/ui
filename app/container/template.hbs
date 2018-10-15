@@ -77,6 +77,17 @@
 
 <section>
   {{#accordion-list as |al expandFn|}}
+    {{#if monitoringEnabled}}
+      {{#accordion-list-item
+        title=(t 'formMonitoring.title')
+        detail=(t 'formMonitoring.detail' type=(t 'generic.pod'))
+        expandAll=al.expandAll
+        expandOnInit=true
+        expand=(action expandFn)
+      }}
+        {{pod-metrics pod=model duration=duration}}
+      {{/accordion-list-item}}
+    {{/if}}
     {{#if model.workload}}
       {{container/form-scheduling
         initialHostId=model.workload.nodeId

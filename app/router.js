@@ -58,11 +58,9 @@ Router.map(function() {
 
       this.route('nodes', function() {
         this.route('index', { path: '/' });
-        this.route('node', {
-          path:           '/:node_id',
-          resetNamespace: true
-        });
       });
+
+      this.mount('monitoring');
 
       this.route('projects', { path: '/projects-namespaces' }, function() {
         this.route('index', { path: '/' });

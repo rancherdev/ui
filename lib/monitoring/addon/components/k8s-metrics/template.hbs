@@ -1,0 +1,51 @@
+  <section>
+    {{metrics-action
+      duration=duration
+      queryAction="query"
+    }}
+  
+    <div class="row mt-30">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">Etcd Network</h2>
+        {{graph-area
+          model=stats
+          lines=lines
+          fields=etcdGrpcFields
+          formatter="kbps"
+          loading=loading
+        }}
+      </div>
+      <div class="col span-6">
+        <h2 class="text-left">Etcd DB Size</h2>
+        {{graph-area
+          model=stats
+          lines=lines
+          fields=etcdDbSizeFields
+          formatter="mib"
+          loading=loading
+        }}
+      </div>
+    </div>
+    <div>
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">API Server Request Rate</h2>
+        {{graph-area
+          model=stats
+          lines=lines
+          fields=apiServerRequestsCountFields
+          formatter="value"
+          loading=loading
+        }}
+      </div>
+      <div class="col span-6">
+        <h2 class="text-left">API Server Request Latency</h2>
+        {{graph-area
+          model=stats
+          lines=lines
+          fields=apiServerRequestsLatencyFields
+          formatter="ms"
+          loading=loading
+        }}
+      </div>
+    </div>
+  </section>

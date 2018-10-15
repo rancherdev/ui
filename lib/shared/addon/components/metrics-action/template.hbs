@@ -1,0 +1,22 @@
+<div class="row mt-15 text-left">
+  <div class="btn-group pl-20 pt-0 mr-10">
+    {{#link-to (query-params duration="min") classNames="btn btn-sm bg-default" disabled=refreshing}}{{t 'infoMultiStats.min'}}{{/link-to}}
+    {{#link-to (query-params duration="hour") classNames="btn btn-sm bg-default duration-tab" disabled=refreshing}}{{t 'infoMultiStats.hour'}}{{/link-to}}
+    {{#link-to (query-params duration="day") classNames="btn btn-sm bg-default duration-tab" disabled=refreshing}}{{t 'infoMultiStats.day'}}{{/link-to}}
+    {{#link-to (query-params duration="week") classNames="btn btn-sm bg-default duration-tab" disabled=refreshing}}{{t 'infoMultiStats.week'}}{{/link-to}}
+
+    <div class="pull-right ml-10">
+      <button type="button" class="btn bg-primary btn-sm icon-btn" disabled={{refreshing}} {{action "refresh"}}>
+        <span class="darken"><i class="icon icon-refresh"></i></span>
+        <span>{{t 'catalogPage.index.refreshBtn'}}</span>
+      </button>
+    </div>
+  </div>
+
+  {{#if grafanaUrl}}
+    <div class="pull-right text-small" style="text-align: right;">
+      <a href={{grafanaUrl}} target="_blank" rel="nofollow noopener noreferrer">{{t 'clusterDashboard.grafana.label'}}</a>
+      <div class="text-small text-muted m-0">{{t 'clusterDashboard.grafana.helpText'}}</div>
+    </div>
+  {{/if}}
+</div>

@@ -113,6 +113,7 @@ generic:
   value: Value
   version: Version
   yes: "Yes"
+  workload: workload
 
 realmNames:
   all: All
@@ -758,9 +759,9 @@ clustersPage:
   nodes:
     label: Nodes
   cpu:
-    label: CPU
+    label: CPU Reservation
   memory:
-    label: RAM
+    label: RAM Reservation
   pod:
     label: Pods
   storage:
@@ -820,25 +821,9 @@ containersPage:
     kubernetesLink: Install Kubernetes
 
 clusterDashboard:
-  title: Dashboard
-  cpu: CPU
-  memory: Memory
-  pods: Pods
-  subtitle:
-    reserved: "{used} of {total} reserved"
-    used: "{used} of {total} used"
-  node: Nodes
-  etcd: etcd
-  scheduler: Scheduler
-  controllerManager: Controller Manager
-  value: Value
-  systemProject: This is the system project which has all Kubernetes and {appName} system namespaces. Changes made to resources in the system project may harm the cluster.
   notActive: This cluster is currently <b>{state}</b>.
   notReady: This cluster is currently <b>{state}</b>; areas that interact directly with it will not be available until the API is ready.
-  noNodes: There are no nodes.
-  alert:
-    node: "Alert: Node {node} is not active."
-    component: "Alert: Component {component} is unhealthy."
+  systemProject: This is the system project which has all Kubernetes and {appName} system namespaces. Changes made to resources in the system project may harm the cluster.
 
 dnsPage:
   noMatch: No records match the current search
@@ -982,10 +967,10 @@ nodesPage:
   table:
     clusterName: Cluster
     role: Roles
-    cpu: CPU
-    memory: RAM
+    cpu: CPU Reservation
+    memory: Memory Reservation
     disk: Disk
-    pod: Pods
+    pod: Pod Usage
     version: Version
     docker: Docker
     unschedulable: Unschedulable
@@ -4275,21 +4260,49 @@ identityBlock:
 infoMultiStats:
   connecting: Connecting...
   utilizationStats: Utilization stats are only available while active/running.
+  min: 5 MIN
+  hour: HOUR
+  day: DAY
+  week: WEEK
+  cpuUsage: CPU Utilization
+  memoryUsage: Memory Utilization
+  diskUsage: Disk Utilization
+  apiServerRequestsCount: Request Per Second
+  networkTranTotal: Transmit
+  etcdNetworkTranTotal: Transmit
+  networkTranError: Transmit Errors
+  networkTranDrop: Transmit Dropped
+  networkTranPacket: Transmit Packets
+  networkRevTotal: Receive
+  etcdNetworkRevTotal: Receive
+  networkRevError: Receive Errors
+  networkRevDrop: Receive Dropped
+  networkRevPacket: Receive Packets
+  memoryPageIn: Memory In
+  memoryPageOut: Memory Out
+  storageRead: Read
+  storageWrite: Write
+  etcdDbSize: DB Size
+  apiServerRequestsLatency: Latency
+  load1: 1 minute
+  load5: 5 minutes
+  load15: 15 minutes
   cpuSection:
-    labelText: CPU
-    system: System
-    user: User
+    labelText: CPU Utilization
   networkSection:
-    labelText: Network
-    transmit: Transmit
-    receive: Receive
+    labelText: Network I/O
+  networkPacketSection:
+    labelText: Network Packets
   memorySection:
-    labelText: Memory
-    used: Used
+    labelText: Memory Utilization
+  memoryPageSection:
+    labelText: Memory Pages
+  diskSection:
+    labelText: Disk Utilization
   storageSection:
-    labelText: Storage
-    read: Read
-    write: Write
+    labelText: Disk I/O
+  loadSection:
+    labelText: Load Average
 
 inputAnswers:
   yaml: Edit as YAML
@@ -5711,7 +5724,7 @@ volumesPage:
   storageClass:
     label: Storage Class
 
-
+    
 vmConsole:
   header: "Console:"
   protip: "ProTip: Hold the {key} key when opening shell access to launch a new window."
@@ -5851,6 +5864,7 @@ nav:
     alerts: Alerts
     notifiers: Notifiers
     logging: Logging
+    monitoring: Monitoring
     pipeline: Pipeline
   project:
     none: Grouped Projects/Namespaces
