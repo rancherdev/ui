@@ -1,5 +1,5 @@
 {{#unless secretOnly}}
-  <td data-title="{{t 'formSources.kind.label'}}">
+  <td data-title="{{t 'formSources.type.label'}}">
     {{#if editing}}
       {{new-select
         classNames="form-control"
@@ -17,7 +17,7 @@
   </td>
   <td>&nbsp;</td>
 {{/unless }}
-<td data-title="{{t 'formSources.kind.label'}}">
+<td data-title="{{t 'formSources.type.label'}}">
   {{#if (and editing (eq source.source 'secret'))}}
     {{schema/input-secret
         namespace=namespace
@@ -51,27 +51,29 @@
       readOnly=(or (not source.sourceName) (not editing))
   }}
 </td>
-<td>
-  <div class="text-center">
-    {{#if specificKeyOnly}}
-      {{t 'generic.as'}}
-    {{else if (eq source.sourceKey null)}}
-      {{t 'generic.prefix'}}
-    {{else}}
-      {{t 'generic.as'}}
-    {{/if}}
-  </div>
-</td>
+{{#unless hideAlias}}
+  <td>
+    <div class="text-center">
+      {{#if specificKeyOnly}}
+        {{t 'generic.as'}}
+      {{else if (eq source.sourceKey null)}}
+        {{t 'generic.prefix'}}
+      {{else}}
+        {{t 'generic.as'}}
+      {{/if}}
+    </div>
+  </td>
 
-<td data-title="{{t 'formSources.prefix.label'}}">
-  {{#input-or-display editable=editing value=prefixOrTarget classesForDisplay="text-muted form-control-static"}}
-    {{input type="text" value=prefixOrTarget classNames="form-control" disabled=(not source.sourceName)}}
-  {{/input-or-display}}
-</td>
-<td>
-  {{#if editing}}
-    <button class="btn bg-primary btn-sm" {{action remove source}}>
-      <i class="icon icon-minus"/><span class="sr-only">{{t 'generic.remove'}}</span>
-    </button>
-  {{/if}}
-</td>
+  <td data-title="{{t 'formSources.prefix.label'}}">
+    {{#input-or-display editable=editing value=prefixOrTarget classesForDisplay="text-muted form-control-static"}}
+      {{input type="text" value=prefixOrTarget classNames="form-control" disabled=(not source.sourceName)}}
+    {{/input-or-display}}
+  </td>
+  <td>
+    {{#if editing}}
+      <button class="btn bg-primary btn-sm" {{action remove source}}>
+        <i class="icon icon-minus"/><span class="sr-only">{{t 'generic.remove'}}</span>
+      </button>
+    {{/if}}
+  </td>
+{{/unless}}

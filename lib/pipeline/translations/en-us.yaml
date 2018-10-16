@@ -18,6 +18,7 @@ generic:
   pipeline: Pipeline
   is: is
   push: Push to Repository
+  required: '{key} is required.'
 ##############################
 # Resource Actions
 ##############################
@@ -86,6 +87,72 @@ newPipelineStep:
     image: Base Image
     env: Environment Variables
     enableBranch: Configure pipeline for this branch.
+    publishCatalog:
+      label: Publish App
+      auth:
+        username:
+          label: Username Secret
+          helpText: The secret will be used as username for git push
+        password:
+          label: Password Secret
+          helpText: The secret will be used as password for git push
+        deployKey:
+          label: Deploy Key Secret
+          helpText: The secret will be used as deploy key for git push
+      stepName: Publish Catalog App
+      targets: 
+        http: Push to Git with HTTP(S)
+        ssh: Push to Git with SSH
+      path: 
+        label: Chart Folder
+        placeholder: e.g. ./charts/wordpress/latest
+        helpText: 'The folder path where <code style="padding: 2px 5px;">Chart.yaml</code> is in the repository.'
+      catalog: 
+        label: Catalog App Name
+        placeholder: e.g. wordpress
+        helpText: The name of the app want to publish.
+      version: 
+        label: Catalog App Version
+        placeholder: e.g. latest
+        helpText: The version of the app you want to publish.
+      gitUrl: 
+        label: Target Git URL
+        placeholder: 
+          ssh: e.g. git@github.com:myrepo/charts.git
+          http: e.g. https://github.com/myrepo/charts.git
+        helpText: The Git URL where the app will be published to.
+      gitBranch: 
+        label: Target Git Branch
+        placeholder: e.g. dev
+        helpText: The Git branch which the app will be published to.
+      gitAuthor: 
+        label: Author Name
+        placeholder: e.g. user
+        helpText: The author name used in the commit message.
+      gitEmail: 
+        label: Author Email
+        placeholder: user@example.com
+        helpText: The author email used in the commit message.
+
+        
+    applyApp:
+      label: Deploy App
+      stepName: Deploy Catalog App
+      store:
+        label: Catalog
+      catalog: 
+        label: Application
+        helpText: You can select an existing app or input a new name.
+      version: 
+        label: Version
+        helpText: You can select an existing version or input a new version.
+      name: 
+        label: Name
+        placeholder: e.g. app
+      targetNamespace:
+        label: Namespace
+        helpText: The target namespace where you want to deploy this app.
+
     applyYaml:
       label: Deploy YAML
       yaml: YAML Path

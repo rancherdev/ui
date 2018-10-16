@@ -32,6 +32,7 @@ export default Component.extend({
   editing:         true,
   secretOnly:      false,
   specificKeyOnly: false,
+  hideAlias:       false,
 
   selectedSecret: null,
   sources:        SOURCES,
