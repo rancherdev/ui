@@ -106,6 +106,7 @@ export default Component.extend(Grafana, {
             });
           });
 
+          set(this, 'stats.needRefresh', true);
           set(this, 'loading', false);
           options.cb();
         });
