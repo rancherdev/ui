@@ -9,6 +9,7 @@
         <h2 class="text-left">{{t 'infoMultiStats.cpuSection.labelText'}}</h2>
         {{graph-area
           model=stats
+          lines=lines
           fields=cpuFields
           formatter="percent"
           minMax=100
@@ -20,6 +21,7 @@
         <h2 class="text-left">{{t 'infoMultiStats.loadSection.labelText'}}</h2>
         {{graph-area
           model=stats
+          lines=lines
           fields=loadFields
           minMax=1
           loading=loading
@@ -32,6 +34,7 @@
         <h2 class="text-left">{{t 'infoMultiStats.memorySection.labelText'}}</h2>
         {{graph-area
           model=stats
+          lines=lines
           fields=memoryFields
           formatter="percent"
           minMax=100
@@ -42,6 +45,7 @@
           <h2 class="text-left">{{t 'infoMultiStats.memoryPageSection.labelText'}}</h2>
           {{graph-area
             model=stats
+            lines=lines
             fields=memoryPageFields
             formatter="kbps"
             loading=loading
@@ -54,6 +58,7 @@
         <h2 class="text-left">{{t 'infoMultiStats.diskSection.labelText'}}</h2>
         {{graph-area
           model=stats
+          lines=lines
           fields=diskFields
           formatter="percent"
           minMax=100
@@ -64,6 +69,7 @@
         <h2 class="text-left">{{t 'infoMultiStats.storageSection.labelText'}}</h2>
         {{graph-area
           model=stats
+          lines=lines
           fields=storageFields
           formatter="kbps"
           loading=loading
@@ -76,6 +82,7 @@
         <h2 class="text-left">{{t 'infoMultiStats.networkSection.labelText'}}</h2>
         {{graph-area
           model=stats
+          lines=lines
           fields=networkFields
           formatter="kbps"
           minMax=100
@@ -86,6 +93,7 @@
         <h2 class="text-left">{{t 'infoMultiStats.networkPacketSection.labelText'}}</h2>
         {{graph-area
           model=stats
+          lines=lines
           fields=networkPacketFields
           loading=loading
         }}
