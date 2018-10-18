@@ -13,9 +13,9 @@
     </div>
   </div>
 
-  {{#if showDashboardLink}}
+  {{#if grafanaUrl}}
     <div class="pull-right text-small" style="text-align: right;">
-      <a href={{grafanaUrl}} class={{if grafanaUrl "" "disabled"}} target="_blank" rel="nofollow noopener noreferrer">{{t 'clusterDashboard.grafana.label'}}</a>
+      <a href={{grafanaUrl}} target="_blank" rel="nofollow noopener noreferrer">{{t 'clusterDashboard.grafana.label'}}</a>
       <div class="text-small text-muted m-0">{{t 'clusterDashboard.grafana.helpText'}}</div>
     </div>
   {{/if}}
