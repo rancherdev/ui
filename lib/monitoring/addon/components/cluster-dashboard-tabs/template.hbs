@@ -19,7 +19,7 @@
 {{/if}}
 
 {{#if (eq mode 'nodes')}}
-  {{all-nodes-metrics nodes=nodes duration=duration}}
+  {{all-nodes-metrics nodes=nodes duration=duration dashboards=dashboards}}
 {{/if}}
 
 {{#if (eq mode 'reservation')}}
