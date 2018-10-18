@@ -50,7 +50,7 @@ export default Component.extend(Grafana, {
 
             switch (name){
             case 'pod_cpu_usage_seconds_sum_rate':
-              set(this, 'stats.cpuUsage', points.map((p) => [p[0] * 100, p[1]]));
+              set(this, 'stats.cpuUsage', points);
               break;
             case 'pod_memory_usage_bytes_sum':
               set(this, 'stats.memoryUsage', points.map((p) => [p[0] / 1048576, p[1]]));
