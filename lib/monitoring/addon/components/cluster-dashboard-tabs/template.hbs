@@ -15,7 +15,7 @@
 {{/if}}
 
 {{#if (eq mode 'k8s')}}
-  {{k8s-metrics duration=duration}}
+  {{k8s-metrics nodes=nodes duration=duration}}
 {{/if}}
 
 {{#if (eq mode 'nodes')}}

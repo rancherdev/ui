@@ -4316,11 +4316,14 @@ infoMultiStats:
   cpuUsage: CPU Utilization
   memoryUsage: Memory Utilization
   diskUsage: Disk Utilization
+  apiServerRequestsCount: Request Per Second
   networkTranTotal: Transmit
+  etcdNetworkTranTotal: Transmit
   networkTranError: Transmit Errors
   networkTranDrop: Transmit Dropped
   networkTranPacket: Transmit Packets
   networkRevTotal: Receive
+  etcdNetworkRevTotal: Receive
   networkRevError: Receive Errors
   networkRevDrop: Receive Dropped
   networkRevPacket: Receive Packets
@@ -4328,6 +4331,8 @@ infoMultiStats:
   memoryPageOut: Memory Out
   storageRead: Read
   storageWrite: Write
+  etcdDbSize: DB Size
+  apiServerRequestsLatency: Latency
   load1: 1 minute
   load5: 5 minutes
   load15: 15 minutes
