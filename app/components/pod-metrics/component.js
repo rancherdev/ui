@@ -24,7 +24,7 @@ export default Component.extend(Grafana, {
   storageFields:       ['storageWrite', 'storageRead'],
 
   loading: false,
-  stats:   {},
+  stats:   null,
 
   actions: {
     query(options){
@@ -41,6 +41,7 @@ export default Component.extend(Grafana, {
             return;
           }
 
+          set(this, 'stats', {});
           const data = JSON.parse(xhr.body);
           const series = data.series;
 
