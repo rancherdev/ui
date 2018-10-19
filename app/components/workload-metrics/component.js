@@ -54,7 +54,7 @@ export default Component.extend(Grafana, {
             case 'workload_memory_usage_bytes_sum':
               set(this, 'stats.memoryUsage', points.map((p) => [p[0] / 1048576, p[1]]));
               break;
-            case 'workload_fs_byte_sum':
+            case 'workload_fs_bytes_sum':
               set(this, 'stats.diskUsage', points.map((p) => [p[0] / 1048576, p[1]]));
               break;
             case 'workload_network_receive_bytes_sum_rate':
