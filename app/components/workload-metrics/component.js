@@ -48,43 +48,43 @@ export default Component.extend(Grafana, {
             const points = get(serie, 'points');
 
             switch (name){
-            case '_cpu_usage_seconds_sum_rate':
+            case 'workload_cpu_usage_seconds_sum_rate':
               set(this, 'stats.cpuUsage', points);
               break;
-            case '_memory_usage_bytes_sum':
+            case 'workload_memory_usage_bytes_sum':
               set(this, 'stats.memoryUsage', points.map((p) => [p[0] / 1048576, p[1]]));
               break;
-            case '_fs_byte_sum':
+            case 'workload_fs_byte_sum':
               set(this, 'stats.diskUsage', points.map((p) => [p[0] / 1048576, p[1]]));
               break;
-            case '_network_receive_bytes_sum_rate':
+            case 'workload_network_receive_bytes_sum_rate':
               set(this, 'stats.networkRevTotal', points.map((p) => [p[0] / 1024, p[1]]));
               break;
-            case '_network_receive_errors_sum_rate':
+            case 'workload_network_receive_errors_sum_rate':
               set(this, 'stats.networkRevError', points);
               break;
-            case '_network_receive_packets_sum_rate':
+            case 'workload_network_receive_packets_sum_rate':
               set(this, 'stats.networkRevPacket', points);
               break;
-            case '_network_receive_packets_dropped_sum_rate':
+            case 'workload_network_receive_packets_dropped_sum_rate':
               set(this, 'stats.networkRevDrop', points);
               break;
-            case '_network_transmit_bytes_sum_rate':
+            case 'workload_network_transmit_bytes_sum_rate':
               set(this, 'stats.networkTranTotal', points.map((p) => [p[0] / 1024, p[1]]));
               break;
-            case '_network_transmit_errors_sum_rate':
+            case 'workload_network_transmit_errors_sum_rate':
               set(this, 'stats.networkTranError', points);
               break;
-            case '_network_transmit_packets_sum_rate':
+            case 'workload_network_transmit_packets_sum_rate':
               set(this, 'stats.networkTranPacket', points);
               break;
-            case '_network_transmit_packets_dropped_sum_rate':
+            case 'workload_network_transmit_packets_dropped_sum_rate':
               set(this, 'stats.networkTranDrop', points);
               break;
-            case '_disk_io_reads_bytes_sum_rate':
+            case 'workload_disk_io_reads_bytes_sum_rate':
               set(this, 'stats.storageRead', points.map((p) => [p[0] / 1024, p[1]]));
               break;
-            case '_disk_io_writes_bytes_sum_rate':
+            case 'workload_disk_io_writes_bytes_sum_rate':
               set(this, 'stats.storageWrite', points.map((p) => [p[0] / 1024, p[1]]));
               break;
             }
