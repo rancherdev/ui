@@ -84,7 +84,7 @@ module.exports = {
     "no-caller": "error",
     "no-cond-assign": [ "error", "except-parens" ],
     "no-console": "off",
-    "no-debugger": "warn",
+    "no-debugger": "off",
     "no-empty": "off",
     "no-eq-null": "error",
     "no-eval": "error",

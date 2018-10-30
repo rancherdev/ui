@@ -120,6 +120,7 @@ Router.map(function() {
       this.mount('alert', { path: '/alerts' });
 
       this.mount('pipeline');
+      this.mount('monitoring');
 
       // Workload
       this.route('containers', {
