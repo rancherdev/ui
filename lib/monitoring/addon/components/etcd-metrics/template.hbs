@@ -1,12 +1,13 @@
   <section>
     {{metrics-action
       duration=duration
+      dashboards=dashboards
+      dashboardName="Etcd"
       queryAction="query"
     }}
-  
     <div class="row">
       <div class="col span-6 pl-20">
-        <h2 class="text-left">Controller Manager Queue Depth</h2>
+        <h2 class="text-left">RPC Rate</h2>
         {{graph-area
           model=stats
           lines=lines
@@ -16,7 +17,29 @@
         }}
       </div>
       <div class="col span-6">
-        <h2 class="text-left">Unscheduled Pods Count</h2>
+        <h2 class="text-left">Active streams</h2>
+        {{graph-area
+          model=stats
+          lines=lines
+          fields=etcdDbSizeFields
+          formatter="mib"
+          loading=loading
+        }}
+      </div>
+    </div>
+    <div class="row mt-30">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">DB Size</h2>
+        {{graph-area
+          model=stats
+          lines=lines
+          fields=etcdDbSizeFields
+          formatter="mib"
+          loading=loading
+        }}
+      </div>
+      <div class="col span-6">
+        <h2 class="text-left">Disk Sync Duration</h2>
         {{graph-area
           model=stats
           lines=lines
@@ -26,21 +49,19 @@
         }}
       </div>
     </div>
-
     <div class="row mt-30">
       <div class="col span-6 pl-20">
-        <h2 class="text-left">Ingress Connections</h2>
+        <h2 class="text-left">Server Used Memory</h2>
         {{graph-area
           model=stats
           lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
+          fields=etcdDbSizeFields
+          formatter="mib"
           loading=loading
         }}
       </div>
-
       <div class="col span-6">
-        <h2 class="text-left">Ingress Success/Failed Rate</h2>
+        <h2 class="text-left">Client Traffic</h2>
         {{graph-area
           model=stats
           lines=lines
@@ -50,20 +71,19 @@
         }}
       </div>
     </div>
-
     <div class="row mt-30">
       <div class="col span-6 pl-20">
-        <h2 class="text-left">Ingress Request Volume</h2>
+        <h2 class="text-left">Peer Traffic</h2>
         {{graph-area
           model=stats
           lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
+          fields=etcdDbSizeFields
+          formatter="mib"
           loading=loading
         }}
       </div>
       <div class="col span-6">
-        <h2 class="text-left">Ingress Request Process Time</h2>
+        <h2 class="text-left">Disk Operation</h2>
         {{graph-area
           model=stats
           lines=lines
@@ -73,48 +93,14 @@
         }}
       </div>
     </div>
-
     <div class="row mt-30">
       <div class="col span-6 pl-20">
-        <h2 class="text-left">Scheduler E2E Latency</h2>
+        <h2 class="text-left">Raft Proposals</h2>
         {{graph-area
           model=stats
           lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-        <h2 class="text-left">Scheduler Preemption Attempts</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">API Server Request Count</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-        <h2 class="text-left">API Server Request Latency</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
+          fields=etcdDbSizeFields
+          formatter="mib"
           loading=loading
         }}
       </div>

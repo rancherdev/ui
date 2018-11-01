@@ -1,0 +1,73 @@
+  <section>
+    {{metrics-action
+      duration=duration
+      queryAction="query"
+    }}
+  
+    <div class="row">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">Fluentd Up Status</h2>
+        {{graph-area
+          model=stats
+          lines=lines
+          fields=etcdGrpcFields
+          formatter="kbps"
+          loading=loading
+        }}
+      </div>
+      <div class="col span-6">
+        <h2 class="text-left">Fluentd Emit count</h2>
+        {{graph-area
+          model=stats
+          lines=lines
+          fields=etcdDbSizeFields
+          formatter="mib"
+          loading=loading
+        }}
+      </div>
+    </div>
+    <div class="row mt-30">
+      <div class="col span-6 pl-20">
+        <h2 class="text-left">Fluentd Incoming Records by Tag</h2>
+        {{graph-area
+          model=stats
+          lines=lines
+          fields=apiServerRequestsCountFields
+          formatter="value"
+          loading=loading
+        }}
+      </div>
+      <div class="col span-6">
+        <h2 class="text-left">Fluentd Incoming Records by Node</h2>
+        {{graph-area
+          model=stats
+          lines=lines
+          fields=apiServerRequestsLatencyFields
+          formatter="ms"
+          loading=loading
+        }}
+      </div>
+    </div>
+    <div class="row mt-30">
+        <div class="col span-6 pl-20">
+          <h2 class="text-left">Fluentd Outgoing Records by Tag</h2>
+          {{graph-area
+            model=stats
+            lines=lines
+            fields=apiServerRequestsCountFields
+            formatter="value"
+            loading=loading
+          }}
+        </div>
+        <div class="col span-6">
+          <h2 class="text-left">Fluentd Outgoing Records by Node</h2>
+          {{graph-area
+            model=stats
+            lines=lines
+            fields=apiServerRequestsLatencyFields
+            formatter="ms"
+            loading=loading
+          }}
+        </div>
+      </div>
+  </section>

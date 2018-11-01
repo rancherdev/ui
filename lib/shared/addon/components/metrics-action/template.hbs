@@ -23,12 +23,21 @@
   </div>
   <div class="pull-left pl-20 pt-0 mr-10">
     <label class="pt-5 acc-label">Mode:</label>
-    <div>
-      <div class="btn-group no-inline-space">
-        <button class="btn btn-link btn-sm bg-primary">Summary</button>
-        <button class="btn btn-link btn-sm bg-default">Detail</button>
+    {{#if detail}}
+      <div>
+        <div class="btn-group no-inline-space">
+          <button class="btn btn-link btn-sm bg-default" {{action "toggle" false}}>Summary</button>
+          <button class="btn btn-link btn-sm bg-primary" {{action "toggle" true}}>Detail</button>
+        </div>
       </div>
-    </div>
+    {{else}}
+      <div>
+        <div class="btn-group no-inline-space">
+          <button class="btn btn-link btn-sm bg-primary" {{action "toggle" false}}>Summary</button>
+          <button class="btn btn-link btn-sm bg-default" {{action "toggle" true}}>Detail</button>
+        </div>
+      </div>
+    {{/if}}
   </div>
 </div>
 
