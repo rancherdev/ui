@@ -71,7 +71,12 @@
   
   <td data-title="{{dt.cpu}}">
     {{#if model.cpuUsage}}
-      {{model.cpuUsage}}
+      <div>
+        <small>{{model.cpuUsage}} Used</small>
+      </div>
+      <div>
+        <small>{{model.cpuReserved}} Reserved</small>
+      </div>
     {{else}}
       <span class="text-muted">
         {{t 'generic.na'}}
@@ -81,7 +86,12 @@
 
   <td data-title="{{dt.memory}}">
     {{#if model.memoryUsage}}
-      {{model.memoryUsage}}
+      <div>
+        <small>{{model.memoryUsage}} Used</small>
+      </div>
+      <div>
+        <small>{{model.memoryReserved}} Reserved</small>
+      </div>
     {{else}}
       <span class="text-muted">
         {{t 'generic.na'}}

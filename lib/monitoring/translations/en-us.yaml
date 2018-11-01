@@ -6,10 +6,10 @@ generic:
 clusterDashboard:
   title: Dashboard
   sections:
-    cluster: Cluster Metrics
-    nodes: Nodes Metrics
-    k8s: Kubernetes Components Metrics
-    reservation: Cluster Reservation
+    cluster: Cluster
+    etcd: Etcd
+    rancher: Rancher Components
+    k8s: Kubernetes Components
     node: Node Metrics
     nodeReservation: Node Reservation
   cpu: CPU Reservation

@@ -37,6 +37,18 @@
       {{t 'generic.createdDate' date=(date-from-now model.created) htmlSafe=true}}
     </p>
   </td>
+
+  <td data-title="{{dt.cpu}}">
+    <div>
+      <small>0.2 mCPU</small>
+    </div>
+  </td>
+
+  <td data-title="{{dt.cpu}}">
+    <div>
+      <small>200 MiB</small>
+    </div>
+  </td>
   {{#if scalePlaceholder}}
     <td class="text-muted text-center">
       <small>{{t 'namespaceGroup.none'}}</small>

@@ -194,6 +194,7 @@ const App = Application.extend({
           'router',
           'k8s',
           'clusterStore',
+          'tooltip',
         ],
         externalRoutes: {}
       }

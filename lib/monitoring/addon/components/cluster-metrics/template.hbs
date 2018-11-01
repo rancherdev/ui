@@ -5,9 +5,11 @@
     dashboardName="Cluster"
     queryAction="query"
   }}
-  <div class="row mt-30">
+  <div class="row">
     <div class="col span-6 pl-20">
-      <h2 class="text-left">{{t 'infoMultiStats.cpuSection.labelText'}}</h2>
+      {{#tooltip-element type="tooltip-basic" model=express tooltipTemplate='tooltip-static' aria-describedby="tooltip-base" tooltipFor="tooltipLink"}}
+       <h2 class="text-left">{{t 'infoMultiStats.cpuSection.labelText'}}</h2>
+      {{/tooltip-element}}
       {{graph-area
         model=stats
         fields=cpuFields

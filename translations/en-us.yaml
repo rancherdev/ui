@@ -766,9 +766,9 @@ clustersPage:
   nodes:
     label: Nodes
   cpu:
-    label: CPU Reservation
+    label: CPU
   memory:
-    label: RAM Reservation
+    label: Memory
   pod:
     label: Pods
   storage:
@@ -991,8 +991,8 @@ nodesPage:
   table:
     clusterName: Cluster
     role: Roles
-    cpu: CPU Reservation
-    memory: Memory Reservation
+    cpu: CPU
+    memory: Memory
     disk: Disk
     pod: Pod Usage
     version: Version

@@ -12,6 +12,10 @@
 
 {{#if (eq mode 'cluster')}}
   {{cluster-metrics duration=duration dashboards=dashboards}}
+  <hr>
+  <section>
+    {{nodes-reservation nodes=nodes}}
+  </section>
 {{/if}}
 
 {{#if (eq mode 'k8s')}}
@@ -20,10 +24,4 @@
 
 {{#if (eq mode 'nodes')}}
   {{all-nodes-metrics nodes=nodes duration=duration dashboards=dashboards}}
-{{/if}}
-
-{{#if (eq mode 'reservation')}}
-  <section>
-    {{nodes-reservation nodes=nodes}}
-  </section>
 {{/if}}
