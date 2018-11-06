@@ -132,6 +132,16 @@
     }}
   {{/unless}}
 
+  {{container/form-custom-metrics
+      classNames="accordion-wrapper"
+      instance=launchConfig
+      errors=networkingErrors
+      service=service
+      editing=true
+      expandAll=al.expandAll
+      expandFn=expandFn
+  }}
+
   {{#accordion-list-item
     title=(t 'formHealthCheck.title')
     detail=(t 'formHealthCheck.detail' appName=settings.appName)
