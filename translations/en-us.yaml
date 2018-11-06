@@ -1000,6 +1000,7 @@ nodesPage:
     unschedulable: Unschedulable
     instanceState: Container States
     instanceStateWithIcon: States
+    stats: Usages
     noData: This cluster does not have any nodes defined
     noMatch: No nodes match the current search
 
@@ -5718,6 +5719,10 @@ siteAccess:
   groups: Groups
   organizations: Organizations
 
+ingressResponse:
+  host: Host
+  path: Path
+  responseTime: Response Time
 systemInfoSection:
   title: System Information
   detail: System and kubernetes information.

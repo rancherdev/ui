@@ -4,7 +4,7 @@
       queryAction="query"
     }}
   
-    <div class="row">
+    <div class="row mt-20">
       <div class="col span-6 pl-20">
         <h2 class="text-left">Controller Manager Queue Depth</h2>
         {{graph-area
@@ -120,3 +120,12 @@
       </div>
     </div>
   </section>
+
+  {{#accordion-list as |al expandFn|}}
+    <div class="mt-20 text-left">
+      {{ingress-response-list
+        expandAll=al.expandAll
+        expandFn=expandFn
+      }}
+    </div>
+  {{/accordion-list}}

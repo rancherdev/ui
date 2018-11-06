@@ -1,0 +1,40 @@
+{{#accordion-list-item
+     title="Upstream Response Milliseconds"
+     detail="Top 10 ingress upstream response milliseconds group by host and path"
+     statusClass=(if labelArray.length 'bg-success' 'text-muted')
+     expandAll=expandAll
+     expand=(action expandFn)
+     expandOnInit=true
+     componentName='sortable-table'
+     as | parent |
+}}
+  {{#component parent.intent
+       classNames="grid fixed mb-0 sortable-table"
+       bulkActions=false
+       rowActions=false
+       paging=false
+       search=true
+       sortBy=sortBy
+       stickyHeader=false
+       descending=descending
+       headers=headers
+       body=data
+       as |sortable kind inst|
+  }}
+    {{#if (eq kind "row")}}
+      <tr>
+        <td data-title="{{t 'systemInfoSection.key'}}:" class="force-wrap">{{inst.host}}</td>
+        <td data-title="{{t 'systemInfoSection.value'}}:" class="force-wrap">{{inst.path}}</td>
+        <td data-title="{{t 'systemInfoSection.value'}}:" class="force-wrap">{{inst.time}} ms</td>
+      </tr>
+    {{else if (eq kind "norows")}}
+      <tr>
+        <td colspan="{{sortable.fullColspan}}" class="text-center text-muted pt-20 pb-20">{{t 'systemInfoSection.noData'}}</td>
+      </tr>
+    {{else if (eq kind "nomatch")}}
+      <tr>
+        <td colspan="{{sortable.fullColspan}}" class="text-center text-muted pt-20 pb-20">{{t 'systemInfoSection.noMatch'}}</td>
+      </tr>
+    {{/if}}
+  {{/component}}
+{{/accordion-list-item}}

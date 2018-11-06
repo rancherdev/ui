@@ -6,6 +6,27 @@
       queryAction="query"
     }}
     <div class="row">
+      <div class="col span-12 pl-20">
+        <div class="row banner bg-info basics">
+          <div class="vertical-middle">
+            <label class="acc-label vertical-middle p-0">Etcd has a leader:</label>
+            YES
+          </div>
+
+          <div class="vertical-middle">
+            <label class="acc-label vertical-middle p-0">The Number of Leader Changes:</label>
+            1
+          </div>
+
+          <div class="vertical-middle">
+            <label class="acc-label vertical-middle p-0">The Number of Failed Proposals:</label>
+            1
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col span-6 pl-20">
         <h2 class="text-left">RPC Rate</h2>
         {{graph-area

@@ -30,18 +30,11 @@ export const headers = [
     translationKey: 'generic.image',
   },
   {
-    name:           'cpu',
-    sort:           ['cpuUsage', 'displayName'],
-    searchField:    null,
-    width:          200,
-    translationKey: 'nodesPage.table.cpu',
-  },
-  {
     name:           'memory',
     sort:           ['memoryUsage', 'displayName'],
     searchField:    null,
     width:          200,
-    translationKey: 'nodesPage.table.memory',
+    translationKey: 'nodesPage.table.stats',
   },
   {
     name:           'scale',
