@@ -197,7 +197,7 @@
 
   <div class="col span-9">
     {{#if scope.currentCluster.isMonitoringReady}}
-      {{pod-metrics pod=model}}
+      {{pod-metrics id=model.id}}
       <hr class="mt-30"/>
     {{/if}}
     {{#accordion-list as |al expandFn|}}

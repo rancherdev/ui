@@ -76,7 +76,7 @@
     <hr class="mt-30"/>
 
     {{#if scope.currentCluster.isMonitoringReady}}
-      {{node-metrics node=node dashboards=dashboards}}
+      {{node-metrics id=model.node.id dashboards=dashboards}}
       <hr class="mt-30"/>
     {{else if monitoringEnabled}}
       <div class="row mt-0 mb-0">

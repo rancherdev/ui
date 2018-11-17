@@ -61,7 +61,7 @@
 
   <div class="col span-9">
     {{#if scope.currentCluster.isMonitoringReady}}
-      {{container-metrics container=model}}
+      {{container-metrics id=model.id}}
       <hr class="mt-30"/>
     {{/if}}
     
