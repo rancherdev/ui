@@ -1,6 +1,6 @@
 {{#if showDashboard}}
   <div class="row">
-    <div class="col span-3">
+    <div class="col span-3" style="position: sticky;top: 0px;display:inline-block;vertical-align: top;">
       {{k8s-component-status label='clusterDashboard.etcd' healthy=etcdHealthy url=etcdUrl}}
       {{k8s-component-status label='clusterDashboard.controllerManager' healthy=controllerHealthy url=controllerUrl}}
       {{k8s-component-status label='clusterDashboard.scheduler' healthy=schedulerHealthy url=schedulerUrl}}

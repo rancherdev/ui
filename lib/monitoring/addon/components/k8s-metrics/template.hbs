@@ -1,124 +1,12 @@
   <section>
     {{metrics-action
-      duration=duration
+      dashboards=dashboards
+      dashboardName="Kubernetes Components"
       queryAction="query"
+      state=state
     }}
   
-    <div class="row mt-20">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">Controller Manager Queue Depth</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-        <h2 class="text-left">Unscheduled Pods Count</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">Ingress Connections</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-
-      <div class="col span-6">
-        <h2 class="text-left">Ingress Success/Failed Rate</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">Ingress Request Volume</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-        <h2 class="text-left">Ingress Request Process Time</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">Scheduler E2E Latency</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-        <h2 class="text-left">Scheduler Preemption Attempts</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-    </div>
-
-    <div class="row mt-30">
-      <div class="col span-6 pl-20">
-        <h2 class="text-left">API Server Request Count</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-      <div class="col span-6">
-        <h2 class="text-left">API Server Request Latency</h2>
-        {{graph-area
-          model=stats
-          lines=lines
-          fields=apiServerRequestsCountFields
-          formatter="value"
-          loading=loading
-        }}
-      </div>
-    </div>
+    {{metrics-graph graphs=graphs loading=state.loading noGraphs=state.noGraphs}}
   </section>
 
   {{#accordion-list as |al expandFn|}}

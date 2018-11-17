@@ -2,6 +2,7 @@ generic:
   cpu: CPU
   memory: Memory
   hours: Hours
+  noData: No Data
 
 clusterDashboard:
   title: Dashboard

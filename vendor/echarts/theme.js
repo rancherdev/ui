@@ -47,7 +47,7 @@
             },
             "lineStyle": {
                 "normal": {
-                    "width": "3"
+                    "width": "1"
                 }
             },
             "symbolSize": "8",
@@ -62,7 +62,7 @@
             },
             "lineStyle": {
                 "normal": {
-                    "width": "3"
+                    "width": "1"
                 }
             },
             "symbolSize": "8",

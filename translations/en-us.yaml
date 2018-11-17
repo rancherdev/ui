@@ -806,6 +806,7 @@ containerPage:
       noData: This container has no volumes mounted
       noMatch: No volumes match the current search
       noContainers: No other containers
+  pod: Pod
 podPage:
   header: 'Pod: {name}'
   nodeIp: Node IP
@@ -1214,14 +1215,14 @@ configMapsPage:
 servicePage:
   header: 'Workload: {name}'
   globalScale: '{scale} per host'
-  endpoints: 'Endpoints:'
+  endpoints: 'Endpoints'
   multistat:
-    type: 'Workload Type:'
-    fqdn: 'FQDN:'
-    scale: 'Scale:'
-    image: 'Image:'
-    namespace: 'Namespace:'
-    created: 'Created:'
+    type: 'Workload Type'
+    fqdn: 'FQDN'
+    scale: 'Scale'
+    image: 'Image'
+    namespace: 'Namespace'
+    created: 'Created'
     daemonSetScale: '1 per node'
   serviceType:
     deployment: Deployment
@@ -4384,6 +4385,12 @@ uploadFile:
 podsSection:
   title: Pods
   detail: Pods in this workload
+
+containersSection:
+  title: Containers
+  detail: Containers in this pod
+  noData: No Containers
+  noMatch: No Containers match the current search
 
 labelsSection:
   kind: Kind

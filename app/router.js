@@ -130,10 +130,15 @@ Router.map(function() {
         this.route('run', { path: '/run' });
         this.route('index', { path: '/' });
 
-        this.route('container', {
-          path:           '/:container_id',
+        this.route('pod', {
+          path:           '/:pod_id',
           resetNamespace: true
         });
+
+        this.route('container', {
+          path:           '/:pod_id/container/:container_name',
+          resetNamespace: true
+        })
       });
 
       this.route('ingresses', { resetNamespace: true }, function() {

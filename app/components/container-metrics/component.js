@@ -5,5 +5,5 @@ import layout from './template';
 export default Component.extend(Metrics, {
   layout,
 
-  graphSelector: { component: 'cluster' },
+  graphSelector: { component: 'container' },
 });

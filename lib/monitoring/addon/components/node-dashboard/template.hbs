@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col span-3">
+  <div class="col span-3" style="position: sticky;top: 0px;display:inline-block;vertical-align: top;">
     {{node-conditions conditionsSource=model.node.conditions}}
 
     <div class="row-same-height row-full-height mt-50">
@@ -71,8 +71,13 @@
     </div>
   </div>
   <div class="col span-9">
+    {{nodes-reservation nodes=model.nodes}}
+
+    <hr class="mt-30"/>
+
     {{#if scope.currentCluster.isMonitoringReady}}
-      {{node-dashboard-tabs node=model.node nodes=model.nodes duration=duration dashboards=dashboards}}
+      {{node-metrics node=node dashboards=dashboards}}
+      <hr class="mt-30"/>
     {{else if monitoringEnabled}}
       <div class="row mt-0 mb-0">
         <div class="pull-right text-small text-error">
@@ -86,10 +91,6 @@
         </div>
       </div>
     {{/if}}
-
-    {{#unless scope.currentCluster.isMonitoringReady}}
-      {{nodes-reservation nodes=model.nodes}}
-    {{/unless}}
     
     {{#accordion-list as |al expandFn|}}
       {{resource-condition-list

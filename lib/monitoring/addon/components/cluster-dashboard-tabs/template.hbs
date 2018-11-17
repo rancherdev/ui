@@ -11,21 +11,21 @@
 </section>
 
 {{#if (eq mode 'cluster')}}
-  {{cluster-metrics nodes=nodes duration=duration dashboards=dashboards}}
-  <hr>
   <section>
     {{nodes-reservation nodes=nodes}}
   </section>
+  <hr>
+  {{cluster-metrics dashboards=dashboards}}
 {{/if}}
 
 {{#if (eq mode 'etcd')}}
-  {{etcd-metrics nodes=nodes duration=duration dashboards=dashboards}}
+  {{etcd-metrics dashboards=dashboards}}
 {{/if}}
 
 {{#if (eq mode 'k8s')}}
-  {{k8s-metrics nodes=nodes duration=duration dashboards=dashboards}}
+  {{k8s-metrics dashboards=dashboards}}
 {{/if}}
 
 {{#if (eq mode 'rancher')}}
-  {{rancher-metrics nodes=nodes duration=duration dashboards=dashboards}}
+  {{rancher-metrics dashboards=dashboards}}
 {{/if}}

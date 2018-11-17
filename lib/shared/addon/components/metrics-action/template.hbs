@@ -1,29 +1,47 @@
-<div class="row mt-15 text-left">
+<div class="row text-left">
   <div class="pull-right pl-20 pt-0 mr-10">
-    <div class="text-left inline-block">
-      <label class="pt-5 acc-label">Period:</label>
-      {{new-select
+    <div class="text-left inline-block" style="width: 120px;">
+      {{searchable-select
         content=periods
         value=selected
+        readOnly=state.loading
       }}
     </div>
     {{#if (eq selected 'custom')}}
-      <div class="text-left inline-block">
-        <label class="pt-5 acc-label">From:</label>
-        {{ember-flatpickr enableTime=true onChange=(action "onChange")}}
+      <div class="text-left inline-block" style="width: 160px;"> 
+        {{ember-flatpickr 
+          disabled=state.loading 
+          enableSeconds=true 
+          time_24hr=true 
+          enableTime=true 
+          date=from 
+          maxDate=to 
+          onChange=(action "fromDidChange") 
+          onClose=(action "onTimePickerClose") 
+          placeholder="From"
+        }}
       </div>
-      <div class="text-left inline-block">
-        <label class="pb-5 acc-label">To:</label>
-        {{ember-flatpickr enableTime=true onChange=(action "onChange")}}
+      <div class="text-left inline-block" style="width: 160px;">
+        {{ember-flatpickr
+          disabled=state.loading
+          enableSeconds=true
+          time_24hr=true
+          enableTime=true
+          minDate=from
+          maxDate=now
+          date=to
+          onChange=(action "toDidChange")
+          onClose=(action "onTimePickerClose") 
+          placeholder="To"
+        }}
       </div>
     {{/if}}
-    <button type="button" style="height: 37px;margin-top: -4px;" class="btn bg-primary" disabled={{refreshing}} {{action "refresh"}}>
+    <button type="button" style="height: 37px;margin-top: -4px;" class="btn bg-primary" disabled={{state.loading}} {{action "refresh"}}>
       <span><i class="icon icon-refresh"></i></span>
     </button>
   </div>
   <div class="pull-left pl-20 pt-0 mr-10">
-    <label class="pt-5 acc-label">Mode:</label>
-    {{#if detail}}
+    {{#if state.detail}}
       <div>
         <div class="btn-group no-inline-space">
           <button class="btn btn-link btn-sm bg-default" {{action "toggle" false}}>Summary</button>
@@ -41,7 +59,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" style="height: 26px;">
   {{#if grafanaUrl}}
     <div class="pull-right">
       <div class="text-small pr-10 pt-5">

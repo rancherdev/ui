@@ -74,7 +74,7 @@ export default Component.extend(ContainerChoices, {
         let container = stack.get('instances').findBy('name', containerName);
 
         if ( container ) {
-          this.get('router').transitionTo('container', container.get('id'));
+          this.get('router').transitionTo('pod', container.get('id'));
 
           return;
         }
