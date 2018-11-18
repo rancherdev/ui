@@ -1,26 +1,19 @@
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
-import { get, set, observer, computed } from '@ember/object';
-import { once } from '@ember/runloop';
+import Grafana from 'shared/mixins/grafana';
+import { get, computed, observer } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import C from 'ui/utils/constants';
 
-export default Controller.extend({
+export default Controller.extend(Grafana, {
+  scope:  service(),
   router: service(),
 
-  selectedContainer: null,
+  monitoringEnabled: alias('scope.currentCluster.isMonitoringReady'),
 
-  actions: {
-    select(container) {
-      set(this, 'selectedContainer', container);
-    }
-  },
-
-  containerDidChange: observer('model.containers.[]', function() {
-    once(() => set(this, 'selectedContainer', get(this, 'model.containers.firstObject')));
-  }),
-
-  podStateDidChange: observer('model.state', function() {
-    if ( get(this, 'model.state') === 'removed' && get(this, 'router.currentRouteName') === 'container' ) {
-      const workloadId = get(this, 'model.workloadId');
+  podStateDidChange: observer('model.pod.state', function() {
+    if ( C.REMOVEDISH_STATES.includes(get(this, 'model.pod.state')) && get(this, 'router.currentRouteName') === 'container' ) {
+      const workloadId = get(this, 'model.pod.workloadId');
 
       if ( workloadId ) {
         this.transitionToRoute('workload', workloadId);
@@ -29,9 +22,10 @@ export default Controller.extend({
       }
     }
   }),
-  displayEnvironmentVars: computed('selectedContainer', function() {
+
+  displayEnvironmentVars: computed('model.environment', function() {
     var envs = [];
-    var environment = this.get('selectedContainer.environment') || {};
+    var environment = get(this, 'model.environment') || {};
 
     Object.keys(environment).forEach((key) => {
       envs.pushObject({

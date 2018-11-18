@@ -1,12 +1,17 @@
 import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
+import Grafana from 'shared/mixins/grafana';
 import { get } from '@ember/object';
+import { inject as service } from '@ember/service';
 
-export default Controller.extend({
+export default Controller.extend(Grafana, {
+  scope:       service(),
+
   launchConfig: null,
 
-  service:            alias('model.workload'),
+  service:           alias('model.workload'),
+  monitoringEnabled: alias('scope.currentCluster.isMonitoringReady'),
 
   displayEnvironmentVars: computed('service.launchConfig.environment', function() {
     var envs = [];
