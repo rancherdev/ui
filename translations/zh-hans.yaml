@@ -844,7 +844,9 @@ metricsAction:
     workload: 工作负载监控
     pod: Pod监控
     container: Container监控
-  more: 查看监控指标
+  more: 
+    view: 查看监控指标
+    hide: 隐藏监控指标
   summary:
     label: 概览模式
   detail:

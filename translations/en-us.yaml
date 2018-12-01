@@ -846,7 +846,9 @@ metricsAction:
     container: Container Metrics
   grafana: 
     label: Grafana
-  more: View Metrics
+  more: 
+    view: View Metrics
+    hide: Hide Metrics
   summary:
     label: Summary
   detail:

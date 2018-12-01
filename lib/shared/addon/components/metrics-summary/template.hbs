@@ -3,7 +3,9 @@
     {{title}}
   </div>
   <div class="pull-right">
-    <button class="btn bg-primary" {{action "doExpand"}}>{{t 'metricsAction.more'}}</button>
+    <button class="btn bg-primary" {{action "doExpand"}}>
+      {{t (if expanded 'metricsAction.more.hide' 'metricsAction.more.view' )}}
+    </button>
   </div>
   {{#if grafanaUrl}}
     <div class="pull-right grafana-link pr-20">

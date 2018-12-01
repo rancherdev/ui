@@ -30,7 +30,16 @@ $accordion-border: darken($bg-default, 5) !default;
       text-align: left;
     }
 
+    div {
+      &:focus {
+        outline: 0 !important;
+      }
+    }
+
     .btn {
+      &:focus {
+        outline: 0 !important;
+      }
       padding: 15px 25px;
     }
   }
