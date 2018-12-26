@@ -1,0 +1,9 @@
+stages:
+- name: Build
+  steps:
+  - runScriptConfig:
+      image: rancher/ui:build
+      shellScript: |-
+        ./scripts/update-dependencies
+        ./scripts/build-static -ls -c 'rancherui.oss-cn-shanghai.aliyuncs.com/ui/catalog'
+timeout: 60
