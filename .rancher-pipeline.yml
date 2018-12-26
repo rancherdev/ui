@@ -4,12 +4,13 @@ stages:
   - runScriptConfig:
       image: rancher/ui:build
       shellScript: |-
-        ./scripts/update-dependencies
-        ./scripts/build-static -ls -c '${CICD_GIT_BRANCH}.${INGRESS}'
+        git submodule init
+        git submodule sync
+        git submodule update
 - name: Build
   steps:
   - publishImageConfig:
-      dockerfilePath: ./Dockerfile.nginx
+      dockerfilePath: ./Dockerfile
       buildContext: .
       tag: rancher/ui:${CICD_GIT_COMMIT}
       registry: 127.0.0.1:34350
