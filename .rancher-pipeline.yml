@@ -1,9 +1,9 @@
 stages:
 - name: Build
   steps:
-  - runScriptConfig:
-      image: rancher/ui:build
-      shellScript: |-
-        ./scripts/update-dependencies
-        ./scripts/build-static -ls -c 'rancherui.oss-cn-shanghai.aliyuncs.com/ui/catalog'
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: rancher/ui:${CICD_GIT_COMMIT}
+      registry: 127.0.0.1:34350
 timeout: 60
