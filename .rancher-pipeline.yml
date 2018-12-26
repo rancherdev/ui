@@ -6,4 +6,10 @@ stages:
       buildContext: .
       tag: rancher/ui:${CICD_GIT_COMMIT}
       registry: 127.0.0.1:34350
+  - runScriptConfig:
+      image: rancher/ui:build
+      shellScript: |-
+        git submodule init
+        git submodule sync
+        git submodule update
 timeout: 60
