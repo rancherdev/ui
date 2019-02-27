@@ -830,6 +830,10 @@ ingressPage:
       label: Targets
     noMatch: No ingresses match the current search.
     noData: There are no ingress rules defined
+virtualServicePage:
+  table:
+    noMatch: No virtual services match the current search.
+    noData: There are no virtual services defined
 
 containerPage:
   header: 'Container: {name}'
@@ -6628,6 +6632,11 @@ pagination:
     =0 {No Ingresses}
     =1 {{count} {count, plural, =1 {Ingress} other {Ingresses}}}
     other {{from} - {to} of {count} Ingresses}}
+  virtualService: |
+    {pages, plural,
+    =0 {No Virtual Services}
+    =1 {{count} {count, plural, =1 {Virtual Service} other {Virtual Services}}}
+    other {{from} - {to} of {count} Virtual Services}}
   member: |
     {pages, plural,
     =0 {No Members}
@@ -6961,11 +6970,13 @@ nav:
     containers: Workloads
     dns: Service Discovery
     volumes: Volumes
+    virtualServices: Virtual Services
     pipelines: Pipelines
     deploy: Deploy
     addContainer: Add Container
     addBalancer: Add Balancer
     addIngress: Add Ingress
+    addVirtualService: Add Virtual Service
     addDns: Add Record
     addVolume: Add Volume
     importCompose: Import YAML

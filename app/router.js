@@ -155,6 +155,11 @@ Router.map(function() {
         });
       });
 
+      this.route('virtual-services', { resetNamespace: true }, function() {
+        this.route('run', { path: '/run' });
+        this.route('index', { path: '/' });
+      });
+
       this.route('dns', function() {
         this.route('new', { path: '/add' });
         this.route('index', { path: '/' });
