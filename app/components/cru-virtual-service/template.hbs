@@ -1,0 +1,34 @@
+<section class="header clearfix">
+  {{#if isView}}
+    <div class="right-buttons">{{action-menu model=model size="sm"}}</div>
+  {{/if}}
+  <h1>{{t (concat 'editVirtualService.title.' mode) name=model.displayName}}</h1>
+</section>
+
+<section class="horizontal-form container-fluid">
+  <div class="row">
+    <div class="col span-6">
+      {{form-name-description
+        model=model
+        namePlaceholder="editVirtualService.name.placeholder"
+        nameRequired=true
+        descriptionPlaceholder="editVirtualService.description.placeholder"
+        editing=editing
+      }}
+    </div>
+    <div class="col span-6">
+      {{form-namespace
+        editable=isNew
+        namespace=namespace
+        errors=namespaceErrors
+        registerHook=(action "registerHook")
+        editing=editing
+      }}
+    </div>
+  </div>
+</section>
+
+{{#if editing}}
+  {{top-errors errors=errors}}
+  {{save-cancel editing=isEdit save="save" cancel="cancel"}}
+{{/if}}

@@ -9,9 +9,5 @@ export default Controller.extend({
     done() {
       this.send('goToPrevious', 'virtual-services.index');
     },
-
-    cancel() {
-      this.send('goToPrevious', 'virtual-services.index');
-    },
   },
 });

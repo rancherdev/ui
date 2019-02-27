@@ -943,6 +943,16 @@ dnsPage:
     target: Target
     clusterIpDetail: 'Cluster IP: {ip}'
 
+editVirtualService:
+  title:
+    new: Add Virtual Service
+    edit: Edit Virtual Service
+    view: "Virtual Service: {name}"
+  name:
+    placeholder: e.g. myservice
+  description:
+    placeholder: e.g. Virtual Service of MyApp
+
 editDns:
   title:
     new: Add Record
