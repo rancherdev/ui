@@ -2,7 +2,7 @@
   {{#if isView}}
     <div class="right-buttons">{{action-menu model=model size="sm"}}</div>
   {{/if}}
-  <h1>{{t (concat 'editVirtualService.title.' mode) name=model.displayName}}</h1>
+  <h1>{{t (concat "editVirtualService.title." mode) name=model.displayName}}</h1>
 </section>
 
 <section class="horizontal-form container-fluid">
@@ -26,6 +26,33 @@
       }}
     </div>
   </div>
+
+  <hr class="mt-10 mb-10" />
+
+  <div class="row">
+    <div class="col span-6">
+      {{#form-value-array
+        editing=(not isView)
+        valueLabel="editVirtualService.hosts.label"
+        addActionLabel="editVirtualService.add.host"
+        changed=(action "setHosts")
+        showProTip=false
+        initialValues=initServices
+        as |c row|
+      }}
+        {{schema/input-dns-record
+          culsterIpNotNull=false
+          disabled=(not editing)
+          editing=editing
+          selected=c
+          selectClass="input-sm"
+        }}
+      {{/form-value-array}}
+    </div>
+  </div>
+
+   <hr class="mt-10 mb-10" />
+
 </section>
 
 {{#if editing}}

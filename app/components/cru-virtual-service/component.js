@@ -14,12 +14,19 @@ export default Component.extend(ViewNewEdit, ChildHook, {
 
   layout,
 
-  mode:      null,
-  namespace: alias('model.namespace'),
+  mode:         null,
+  initServices: null,
+  namespace:    alias('model.namespace'),
 
   init() {
     this._super(...arguments);
+
+    set(this, 'initServices', ['']);
   },
 
-  actions: {},
+  actions: {
+    setHosts() {
+
+    }
+  },
 });

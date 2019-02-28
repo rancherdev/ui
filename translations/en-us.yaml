@@ -952,6 +952,12 @@ editVirtualService:
     placeholder: e.g. myservice
   description:
     placeholder: e.g. Virtual Service of MyApp
+  add:
+    host: Add Service
+  prompt:
+    service: Select a Service...
+  hosts:
+    label: Target Services
 
 editDns:
   title:
