@@ -163,6 +163,10 @@
   visibility: hidden;
 }
 
+.text-black {
+  color: $dark-grey !important;
+}
+
 @mixin list-unstyled {
   margin: 0;
   padding: 0;

@@ -1,59 +1,122 @@
 <div class="box mb-10">
-  <div class="row">
-    {{#if editing}}
-      <div class="pull-right">
-        <button class="btn bg-transparent text-small vertical-middle" {{action "removeRule" rule}}>
-          {{t 'editVirtualService.httpRules.removeRuleLabel'}}
-        </button>
-      </div>
-    {{else}}
-      <!-- 28px is the height of the button, no jumpy -->
-      <div style="height: 28px;" class="pull-right"></div>
-    {{/if}}
+  {{#if editing}}
+    <div class="pull-right">
+      <button class="btn bg-transparent text-small vertical-middle p-0" {{action "removeRule" rule}}>
+        <i class="icon icon-trash"/>
+      </button>
+    </div>
+  {{/if}}
+
+  <div class="checkbox pt-10">
+    <label>
+      {{input type="checkbox" checked=conditions}}
+      Specify match conditions for this rule
+    </label>
   </div>
 
+  {{#if conditions}}
+    {{form-route-conditions
+      editing=editing
+    }}
+    <hr class="mt-20"/>
+  {{/if}}
 
   {{form-route-destinations
     editing=editing
   }}
 
-  {{#advanced-section classNames="mt-20" advanced=advanced}}
+  {{#advanced-section classNames="mt-20"}}
     <hr class="mt-20"/>
-    {{form-route-conditions
-      editing=editing
-    }}
-
-    <hr class="mt-20"/>
-    <label class="acc-label pb-5">Redirect and Rewrite</label>
+    <label class="acc-label text-black pb-5">Redirect and Rewrite</label>
     <div class="row">
-      <div class="col span-6">
+      <div class="col span-3">
         <label class="acc-label">Redirect URI</label>
         {{input type="text" classNames="form-control" placeholder="e.g. /v1/bookRatings"}}
       </div>
-      <div class="col span-6">
+      <div class="col span-3">
         <label class="acc-label">Redirect Authority</label>
-        {{input type="text" classNames="form-control" placeholder="e.g. newratings.default.svc.cluster.local"}}
+        {{input type="text" classNames="form-control" placeholder="e.g. newratings"}}
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col span-6">
+      <div class="col span-3">
         <label class="acc-label">Rewrite URI</label>
         {{input type="text" classNames="form-control" placeholder="e.g. /v1/bookRatings"}}
       </div>
-      <div class="col span-6">
+      <div class="col span-3">
         <label class="acc-label">Rewrite Authority</label>
-        {{input type="text" classNames="form-control" placeholder="e.g. newratings.default.svc.cluster.local"}}
+        {{input type="text" classNames="form-control" placeholder="e.g. newratings"}}
       </div>
     </div>
 
     <hr class="mt-20"/>
-    <label class="acc-label pb-5">Timeout and Retries</label>
+    <label class="acc-label text-black pb-5">Timeout and Retries</label>
     <div class="row">
-      <div class="col span-6">
+      <div class="col span-3">
         <label class="acc-label">Request Timeout</label>
         {{input type="text" classNames="form-control" placeholder="e.g. 10s"}}
       </div>
+      <div class="col span-3">
+        <label class="acc-label">Retry Attempts</label>
+        {{input type="text" classNames="form-control" placeholder="e.g. 3"}}
+      </div>
+      <div class="col span-3">
+        <label class="acc-label">Retry Attempt Timeout</label>
+        {{input type="text" classNames="form-control" placeholder="e.g. 2s"}}
+      </div>
     </div>
+
+    <hr class="mt-20"/>
+    <label class="acc-label text-black pb-5">Fault Injection</label>
+    <div class="row">
+      <div class="col span-3">
+        <label class="acc-label">Delay</label>
+        {{input type="text" classNames="form-control" placeholder="e.g. 5s"}}
+      </div>
+      <div class="col span-3">
+        <label class="acc-label">Delay Percent</label>
+        <div class="input-group input-sm">
+          {{input-integer min="0" step="100" placeholder="50"}}
+          <div class="input-group-addon bg-default">%</div>
+        </div>
+      </div>
+      <div class="col span-3">
+        <label class="acc-label">Abort HTTP Code</label>
+        {{input type="text" classNames="form-control" placeholder="e.g. 400"}}
+      </div>
+      <div class="col span-3">
+        <label class="acc-label">Abort Percent</label>
+        <div class="input-group input-sm">
+          {{input-integer min="0" step="100" placeholder="50"}}
+          <div class="input-group-addon bg-default">%</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="mt-20"/>
+    <label class="acc-label text-black pb-5">Mirroring</label>
+    <div class="row">
+      <div class="col span-3">
+        <label class="acc-label">Host</label>
+        {{schema/input-dns-record
+          culsterIpNotNull=false
+          disabled=(not editing)
+          editing=editing
+          selected=c
+          selectClass="input-sm"
+        }}
+      </div>
+      <div class="col span-3">
+        <label class="acc-label">Subnet</label>
+        {{input type="text" classNames="form-control" placeholder="e.g. 3"}}
+      </div>
+    </div>
+
+    <hr class="mt-20"/>
+    <label class="acc-label text-black pb-5">Append Headers</label>
+    {{form-key-value
+        editing=editing
+        valueLabel="editVirtualService.headers.header"
+        keyLabel="editVirtualService.headers.value"
+        addActionLabel="editVirtualService.headers.addActionLabel"
+    }}
   {{/advanced-section}}
 </div>

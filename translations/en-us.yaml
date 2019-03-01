@@ -958,6 +958,12 @@ editVirtualService:
     service: Select a host...
   hosts:
     label: Hosts
+  headers:
+    header: Header
+    value: Value
+    addActionLabel: Add Header
+  conditions:
+    show: Show match conditions
   httpRules:
     label: HTTP Rules
     noRules: No HTTP Rules
