@@ -1,0 +1,18 @@
+<div class="box mb-10">
+  <div class="row">
+    {{#if editing}}
+      <div class="pull-right">
+        <button class="btn bg-transparent text-small vertical-middle" {{action "removeRule" rule}}>
+          {{t 'editVirtualService.httpRules.removeRuleLabel'}}
+        </button>
+      </div>
+    {{else}}
+      <!-- 28px is the height of the button, no jumpy -->
+      <div style="height: 28px;" class="pull-right"></div>
+    {{/if}}
+  </div>
+
+  {{form-route-destinations
+    editing=editing
+  }}
+</div>

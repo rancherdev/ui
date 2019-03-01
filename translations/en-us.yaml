@@ -953,11 +953,32 @@ editVirtualService:
   description:
     placeholder: e.g. Virtual Service of MyApp
   add:
-    host: Add Service
+    host: Add Host
   prompt:
-    service: Select a Service...
+    service: Select a host...
   hosts:
-    label: Target Services
+    label: Hosts
+  httpRules:
+    label: HTTP Rules
+    noRules: No HTTP Rules
+    addRuleLabel: Add Rule
+    removeRuleLabel: Remove this Rule
+  destinations:
+    addDestinationLabel: Add Destination
+    table:
+      noData: No Destinations
+      port:
+        label: Port
+        placeholder: e.g. 8080
+      weight:
+        label: Weight
+        placeholder: e.g. 50
+      subset:
+        label: Subset
+        placeholder: v1
+      host:
+        label: Host
+
 
 editDns:
   title:

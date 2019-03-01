@@ -15,7 +15,7 @@ const propertyOrder = [
   'setupController',
   'resetController',
   ['lifecycle-hook','activate','deactivate','didDestroyElement',
-    'didInsertElement','didReceiveAttrs','didRender','didUpdate',
+    'didReceiveAttrs','didRender','didUpdate',
     'didUpdateAttrs','renderTemplate','serialize','setupController',
     'willClearRender','willDestroyElement','willInsertElement','willRender','willUpdate'
   ],
