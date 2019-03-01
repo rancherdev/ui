@@ -357,7 +357,7 @@ TABLE {
   }
 }
 
-.box > div > table.striped {
+.box div table.striped {
   thead tr {
     color: $link-color;
     border-bottom: solid $link-color 3px;

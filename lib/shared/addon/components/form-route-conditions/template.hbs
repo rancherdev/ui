@@ -1,12 +1,12 @@
-<label class="acc-label pb-5">Routes</label>
+<label class="acc-label pb-5">Match Conditions</label>
 {{#if destinationArray.length}}
   <table class="fixed striped mt-20">
     <thead>
       <tr>
-        <th>{{t 'editVirtualService.destinations.table.host.label'}}</th>
-        <th>{{t 'editVirtualService.destinations.table.subset.label'}}</th>
-        <th>{{t 'editVirtualService.destinations.table.port.label'}}</th>
-        <th>{{t 'editVirtualService.destinations.table.weight.label'}}</th>
+        <th>Match Type</th>
+        <th>Key</th>
+        <th>Condtion</th>
+        <th>Value</th>
         {{#if editing}}
           <th width="40">&nbsp;</th>
         {{/if}}
@@ -17,22 +17,24 @@
       {{#each destinationArray as |destination|}}
         <tr>
           <td class="p-5">
-            {{schema/input-dns-record
-              culsterIpNotNull=false
-              disabled=(not editing)
-              editing=editing
-              selected=c
-              selectClass="input-sm"
+            {{new-select
+              classNames="form-control"
+              content=types
+              value="headers"
             }}
           </td>
           <td class="p-5">
-            {{input type="text" class="input-sm" value=destination.subset placeholder=(t 'editVirtualService.destinations.table.subset.placeholder')}}
+            {{input type="text" class="input-sm" value=destination.subset placeholder="e.g. end-user"}}
           </td>
           <td class="p-5">
-            {{input-integer class="input-sm" min="1" max="65535" value=destination.port placeholder=(t 'editVirtualService.destinations.table.port.placeholder')}}
+            {{new-select
+              classNames="form-control"
+              content=conditions
+              value="exact"
+            }}
           </td>
           <td class="p-5">
-            {{input-integer class="input-sm" min="0" max="100" value=destination.weigth placeholder=(t 'editVirtualService.destinations.table.weight.placeholder')}}
+            {{input type="text" class="input-sm" placeholder="e.g. jason"}}
           </td>
 
           {{#if editing}}
@@ -56,7 +58,7 @@
   <div class="row mt-20">
     <button class="btn bg-link icon-btn pull-right" {{action "addDestination"}}>
       <span class="darken"><i class="icon icon-plus text-small"></i></span>
-      <span>{{t 'editVirtualService.destinations.addDestinationLabel'}}</span>
+      <span>Add Match Condtion</span>
     </button>
   </div>
 {{/if}}
