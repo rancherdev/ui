@@ -1,0 +1,48 @@
+<section class="header">
+  <h1>
+    {{#if isNew}}
+      {{t "globalRegistryPage.header.new"}}
+    {{else if isEdit}}
+      {{t "globalRegistryPage.header.edit"}}
+    {{/if}}
+  </h1>
+</section>
+
+<div class="row">
+  <div class="col span-11-of-23 mt-0 mb-0">
+    {{form-name-description
+      name=model.name
+      bothColClass="col span-12 mt-0"
+      descriptionShown=false
+      colClass="col span-12 mt-0"
+      namePlaceholder="globalRegistryPage.name.placeholder"
+    }}
+  </div>
+</div>
+
+<div class="row mt-20">
+  {{form-key-value
+    initialMap=model.answers
+    changed=(action (mut model.answers))
+    allowEmptyValue=true
+    addInitialEmptyRow=true
+    editing=true
+    header=(t "newCatalog.answers.label")
+    addActionLabel="newCatalog.answers.addAction"
+    keyLabel="newContainer.environment.keyLabel"
+    keyPlaceholder="newContainer.environment.keyPlaceholder"
+    valueLabel="newContainer.environment.valueLabel"
+    valuePlaceholder="newContainer.environment.valuePlaceholder"
+  }}
+</div>
+
+<section>
+  {{top-errors errors=errors}}
+  {{save-cancel
+    cancel="cancel"
+    classNames="text-center mt-20"
+    save="save"
+    editing=isEdit
+    saveDisabled=saveDisabled
+  }}
+</section>

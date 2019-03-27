@@ -369,6 +369,13 @@ const rootNav = [
         resource:       ['globaldnsprovider'],
         resourceScope:  'global',
       },
+      {
+        id:             'global-registries',
+        localizedLabel: 'nav.admin.globalRegistries',
+        route:          'global-admin.global-registry.registries',
+        resource:       ['globalregistry'],
+        resourceScope:  'global',
+      },
     ],
   },
 //  {

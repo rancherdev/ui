@@ -1103,6 +1103,21 @@ cruVolume:
     detail: Configure options for the selected volume source
     prompt: Choose a volume source...
 
+
+globalRegistryPage:
+  title: Global Registries
+  header:
+    new: Add Global Registry
+    edit: Edit Global Registry
+  newRegistry: Add Registry
+  noMatch: No registries match the current search.
+  noData: There are no global registries yet.
+  table:
+    name: Name
+    externalURL: URL
+  name:
+    placeholder: e.g. reg
+
 globalDnsPage:
   header: Global DNS Entries
   newDns: Add DNS Entry
@@ -6726,6 +6741,11 @@ pagination:
     =0 {No Rules}
     =1 {{count} {count, plural, =1 {Rule} other {Rules}}}
     other {{from} - {to} of {count} Rules}}
+  registry: |
+    {pages, plural,
+    =0 {No Registries}
+    =1 {{count} {count, plural, =1 {Registry} other {Registries}}}
+    other {{from} - {to} of {count} Registries}}
   role: |
     {pages, plural,
     =0 {No Roles}
@@ -7046,6 +7066,7 @@ nav:
     globalDns: Global DNS
     globalDnsEntries: Global DNS Entries
     globalDnsProviders: Global DNS Providers
+    globalRegistries: Global Registries
     multiClusterApps: Apps
     security:
       cloudCredentials: Cloud Credentials
