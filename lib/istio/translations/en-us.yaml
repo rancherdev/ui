@@ -1,0 +1,29 @@
+generic:
+  noData: No Data
+
+clusterIstioPage:
+  header: Cluster Istio
+  enabled: Cluster Istio is enabled.
+  disabled: Cluster Istio is not enabled yet.
+  notReady: Installing Istio into the system project of current cluster...
+  confirmDisable: "Are you sure?  Click again to really disable Istio"
+  disable: Disable Istio
+  enableActionLabel: Enable
+  links:
+    title: UI Links
+    detail: UI links for Kiali, Jaeger, Grafana and Prometheus.
+    kiali:
+      label: Kiali UI
+      url: Click <a href="/k8s/clusters/{clusterId}/api/v1/namespaces/istio-system/services/http:kiali:20001/proxy/" target="_blank" rel="nofollow noopener noreferrer">here</a> to go to Kiali UI.
+    jaeger:
+      label: Jaeger UI
+      url: Click <a href="/k8s/clusters/{clusterId}/api/v1/namespaces/istio-system/services/http:tracing:80/proxy/" target="_blank" rel="nofollow noopener noreferrer">here</a> to go to Jaeger UI.
+    grafana:
+      label: Grafana UI
+      url: Click <a href="/k8s/clusters/{clusterId}/api/v1/namespaces/istio-system/services/http:grafana:80/proxy/" target="_blank" rel="nofollow noopener noreferrer">here</a> to go to Grafana UI.
+    prometheus:
+      label: Prometheus UI
+      url: Click <a href="/k8s/clusters/{clusterId}/api/v1/namespaces/istio-system/services/http:prometheus:80/proxy/" target="_blank" rel="nofollow noopener noreferrer">here</a> to go to Prometheus UI.
+  setting:
+    title: Istio Configuration
+    detail: Configure istio which will be deployed into current cluster.

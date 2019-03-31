@@ -117,6 +117,7 @@
       "lib/nodes",
       "lib/pipeline",
       "lib/monitoring",
+      "lib/istio",
       "lib/shared"
     ]
   }
