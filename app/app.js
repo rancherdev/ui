@@ -217,6 +217,7 @@ const App = Application.extend({
           'router',
           'clusterStore',
           'tooltip',
+          'store',
         ],
         externalRoutes: {}
       }

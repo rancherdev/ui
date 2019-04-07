@@ -67,4 +67,8 @@ istio:
       1800: Last 30m
       3600: Last 1h
       10800: Last 3h
+<<<<<<< HEAD
       21600: Last 6h
+=======
+      21600: Last 6h
+>>>>>>> 8778de88b... Add kiali graph

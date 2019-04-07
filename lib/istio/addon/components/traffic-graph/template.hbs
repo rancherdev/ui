@@ -1,0 +1,13 @@
+<div id="cytoscape-container">
+  <div id="cy" class="cytoscape-graph">
+  </div>
+</div>
+
+{{#if (and elements.nodes (gt elements.nodes.length 0))}}
+  {{graph-toolbar cy=cy
+  }}
+{{else}}
+  <div class="empty-graph">
+    <h3>Empty Graph</h3>
+  </div>
+{{/if}}
