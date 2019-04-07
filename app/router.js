@@ -66,7 +66,7 @@ Router.map(function() {
       });
 
       this.mount('monitoring');
-      this.mount('istio');
+      this.mount('istio', { path: '/istios' });
 
       this.route('projects', { path: '/projects-namespaces' }, function() {
         this.route('index', { path: '/' });
@@ -126,6 +126,7 @@ Router.map(function() {
 
       this.mount('pipeline');
       this.mount('monitoring');
+      this.mount('istio', { path: '/istios' });
 
       // Workload
       this.route('containers', {
