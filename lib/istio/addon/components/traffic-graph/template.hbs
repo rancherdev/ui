@@ -7,23 +7,7 @@
   {{graph-toolbar cy=cy
   }}
 {{else}}
-  <div class="empty-grah">
+  <div class="empty-graph">
     <h3>Empty Graph</h3>
   </div>
 {{/if}}
-
-<hr/>
-<div class="row">
-  <div class="col span-6">
-    {{istio-chart
-      series=chartOption.series
-      loading=graphLoading
-    }}
-  </div>
-  <div class="col span-6">
-    {{istio-chart
-      series=chartOption.series
-      loading=graphLoading
-    }}
-  </div>
-</div>

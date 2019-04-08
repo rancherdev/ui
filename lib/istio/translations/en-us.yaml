@@ -27,6 +27,29 @@ clusterIstioPage:
   setting:
     title: Istio Configuration
     detail: Configure istio which will be deployed into current cluster.
+  config:
+    tracingEnabled:
+      label: Enabled Tracing
+    kialiEnabled:
+      label: Enable Kiali
+    prometheusEnabled:
+      label: Enable Prometheus
+    grafanaEnabled:
+      label: Enabled Grafana
+    grafanaPersistenceEnabled:
+      label: Enable Persistent Storage for Grafana
+    grafanaPersistenceSize:
+      label: Grafana Persistent Volume Size
+    grafanaPersistenceStorageClass:
+      label: Default StorageClass for Grafana
+    certmanagerEnabled:
+      label: Enabled Certmanager
+    galleyEnabled:
+      label: Enabled Galley
+    autoInject:
+      label: Enabled automatic Istio Sidecar injection
+    mtlsEnabled:
+      label: Enabled mTLS
 
 istio:
   header:

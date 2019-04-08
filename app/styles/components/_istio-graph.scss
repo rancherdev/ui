@@ -32,8 +32,9 @@
   cursor: pointer !important;
 }
 
-.empty-grah {
+.empty-graph {
   position: relative;
   top: calc(-40vh);
-  left: calc(45vw);
+  left: 50%;
+  width: 100px;
 }

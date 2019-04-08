@@ -40,6 +40,11 @@ metrics:
   fluentd-output-errors: Fluentd Output Errors Rate
   fluentd-output-record-number: Fluentd Output Rate
   fluentd-input-record-number: Fluentd Input Rate
+  istio:
+    success: Success Request Count
+    status3xx: 3xx Request Count
+    status4xx: 4xx Request Count
+    status5xx: 5xx Request Count
 
 ingressResponse:
   host: Host

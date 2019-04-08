@@ -32,55 +32,146 @@
 {{/if}}
 
 {{#if (and enabled ready)}}
-  {{#accordion-list showExpandAll=false as |al expandFn|}}
-    {{#accordion-list-item
-        classNames="mt-30"
-        expand=(action expandFn)
-        expandAll=al.expandAll
-        expandOnInit=true
-        expanded=true
-        title=(t "clusterIstioPage.links.title")
-        detail=(t "clusterIstioPage.links.detail")
+  <div class="row">
+    {{istio-component-status
+      label="clusterIstioPage.links.kiali.label"
+      url=kialiUrl
+      logo="kiali"
     }}
-      <div>
-        <div class="acc-label p-0 mb-5 mt-10">
-          {{t "clusterIstioPage.links.kiali.label"}}:
-        </div>
-        {{t "clusterIstioPage.links.kiali.url" clusterId=cluster.id htmlSafe=true}}
-      </div>
-      <div>
-        <div class="acc-label p-0 mb-5 mt-10">
-          {{t "clusterIstioPage.links.jaeger.label"}}:
-        </div>
-        {{t "clusterIstioPage.links.jaeger.url" clusterId=cluster.id htmlSafe=true}}
-      </div>
-      <div>
-        <div class="acc-label p-0 mb-5 mt-10">
-          {{t "clusterIstioPage.links.grafana.label"}}:
-        </div>
-        {{t "clusterIstioPage.links.grafana.url" clusterId=cluster.id htmlSafe=true}}
-      </div>
-      <div>
-        <div class="acc-label p-0 mb-5 mt-10">
-          {{t "clusterIstioPage.links.prometheus.label"}}:
-        </div>
-        {{t "clusterIstioPage.links.prometheus.url" clusterId=cluster.id htmlSafe=true}}
-      </div>
-    {{/accordion-list-item}}
-  {{/accordion-list}}
+    {{istio-component-status
+      label="clusterIstioPage.links.jaeger.label"
+      url=jaegerUrl
+      logo="jaeger"
+    }}
+    {{istio-component-status
+      label="clusterIstioPage.links.grafana.label"
+      url=grafanaUrl
+      logo="grafana"
+    }}
+    {{istio-component-status
+      label="clusterIstioPage.links.prometheus.label"
+      url=prometheusUrl
+      logo="prometheus-icon"
+    }}
+  </div>
 {{/if}}
 
-{{#accordion-list showExpandAll=false  as |al expandFn|}}
-  {{#accordion-list-item
-      classNames="mt-30"
-      expand=(action expandFn)
-      expandAll=al.expandAll
-      expandOnInit=true
-      expanded=true
-      showExpand=false
-      title=(t "clusterIstioPage.setting.title")
-      detail=(t "clusterIstioPage.setting.detail")
-  }}
+<div class="box mb-10">
+  <div class="row-half mb-10">
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "clusterIstioPage.config.autoInject.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.autoInject
+        classNames="form-control"
+      }}
+    </div>
+
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "clusterIstioPage.config.mtlsEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.mtlsEnabled
+        classNames="form-control"
+      }}
+    </div>
+
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "clusterIstioPage.config.tracingEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.tracingEnabled
+        classNames="form-control"
+      }}
+    </div>
+
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "clusterIstioPage.config.kialiEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.kialiEnabled
+        classNames="form-control"
+      }}
+    </div>
+
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "clusterIstioPage.config.galleyEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.galleyEnabled
+        classNames="form-control"
+      }}
+    </div>
+
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "clusterIstioPage.config.prometheusEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.prometheusEnabled
+        classNames="form-control"
+      }}
+    </div>
+
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "clusterIstioPage.config.grafanaEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.grafanaEnabled
+        classNames="form-control"
+      }}
+    </div>
+    {{#if config.grafanaEnabled}}
+      <div class="col span-6">
+        <label class="acc-label">
+          {{t "clusterIstioPage.config.grafanaPersistenceEnabled.label"}}
+        </label>
+        {{schema/input-boolean
+          value=config.grafanaPersistenceEnabled
+          classNames="form-control"
+        }}
+      </div>
+      {{#if config.grafanaPersistenceEnabled}}
+        <div class="col span-6">
+          <label class="acc-label">
+            {{t "clusterIstioPage.config.grafanaPersistenceSize.label"}}
+          </label>
+          {{schema/input-string
+            classNames="form-control"
+            value=config.grafanaPersistenceSize
+          }}
+        </div>
+        <div class="col span-6">
+          <label class="acc-label">
+            {{t "clusterIstioPage.config.grafanaPersistenceStorageClass.label"}}
+          </label>
+          {{schema/input-storageclass
+            classNames="form-control"
+            value=config.grafanaPersistenceStorageClass
+          }}
+        </div>
+      {{/if}}
+    {{/if}}
+  </div>
+  <div class="row">
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "clusterIstioPage.config.certmanagerEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.certmanagerEnabled
+        classNames="form-control"
+      }}
+    </div>
+  </div>
+
+  {{#advanced-section}}
     {{form-key-value
       initialMap=customAnswers
       changed=(action (mut customAnswers))
@@ -94,8 +185,8 @@
       valueLabel="newContainer.environment.valueLabel"
       valuePlaceholder="newContainer.environment.valuePlaceholder"
     }}
-  {{/accordion-list-item}}
-{{/accordion-list}}
+  {{/advanced-section}}
+</div>
 
 {{save-cancel
   editing=enabled

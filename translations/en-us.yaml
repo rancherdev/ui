@@ -1126,6 +1126,20 @@ globalRegistryPage:
     adminPassword:
       label: Admin Password
       placeholder: Harobr admin password
+  config:
+    persistenceEnabled:
+      label: Enable Persistent Storage for Registry
+    persistenceStorageclass:
+      label: Default StorageClass for Registry
+      size:
+        label: Registry Persistent Volume Size
+    clairEnabled:
+      label: Enable Clair
+    notaryEnabled:
+      label: Enable Notary
+    chartmuseumEnabled:
+      label: Enable Helm Chart Repository in Harbor
+
 
 globalDnsPage:
   header: Global DNS Entries

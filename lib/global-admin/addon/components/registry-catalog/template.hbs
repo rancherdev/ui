@@ -70,43 +70,91 @@
   {{/accordion-list}}
 {{/if}}
 
-{{#accordion-list showExpandAll=false  as |al expandFn|}}
-  {{#accordion-list-item
-      classNames="mt-30"
-      expand=(action expandFn)
-      expandAll=al.expandAll
-      expandOnInit=true
-      expanded=true
-      showExpand=false
-      title=(t "globalRegistryPage.setting.title")
-      detail=(t "globalRegistryPage.setting.detail")
-  }}
-    <div class="row">
+<div class="box mb-10">
+  <div class="row">
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "globalRegistryPage.setting.adminPassword.label"}}{{field-required}}
+      </label>
+      {{input type="text" class="conceal" placeholder=(t "globalRegistryPage.setting.adminPassword.placeholder") value=password}}
+    </div>
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "globalRegistryPage.config.persistenceEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.persistenceEnabled
+        classNames="form-control"
+      }}
+    </div>
+  </div>
+  <div class="">
+    {{#if config.persistenceEnabled}}
       <div class="col span-6">
         <label class="acc-label">
-          {{t "globalRegistryPage.setting.adminPassword.label"}}{{field-required}}
+          {{t "globalRegistryPage.config.persistenceStorageclass.size.label"}}
         </label>
-        {{input type="text" class="conceal" placeholder=(t "globalRegistryPage.setting.adminPassword.placeholder") value=password}}
+        {{schema/input-string
+          value=config.persistenceStorageclassSize
+        }}
       </div>
-    </div>
-
-    {{#advanced-section advanced=advanced}}
-      {{form-key-value
-        initialMap=customAnswers
-        changed=(action (mut customAnswers))
-        allowEmptyValue=true
-        addInitialEmptyRow=true
-        editing=true
-        header=(t "newCatalog.answers.label")
-        addActionLabel="newCatalog.answers.addAction"
-        keyLabel="newContainer.environment.keyLabel"
-        keyPlaceholder="newContainer.environment.keyPlaceholder"
-        valueLabel="newContainer.environment.valueLabel"
-        valuePlaceholder="newContainer.environment.valuePlaceholder"
+      <div class="col span-6">
+        <label class="acc-label">
+          {{t "globalRegistryPage.config.persistenceStorageclass.label"}}
+        </label>
+        {{schema/input-storageclass
+          value=config.persistenceStorageclass
+        }}
+      </div>
+    {{/if}}
+  </div>
+  <div class="row">
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "globalRegistryPage.config.clairEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.clairEnabled
+        classNames="form-control"
       }}
-    {{/advanced-section}}
-  {{/accordion-list-item}}
-{{/accordion-list}}
+    </div>
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "globalRegistryPage.config.notaryEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.notaryEnabled
+        classNames="form-control"
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col span-6">
+      <label class="acc-label">
+        {{t "globalRegistryPage.config.chartmuseumEnabled.label"}}
+      </label>
+      {{schema/input-boolean
+        value=config.chartmuseumEnabled
+        classNames="form-control"
+      }}
+    </div>
+  </div>
+  {{#advanced-section advanced=advanced}}
+    {{form-key-value
+      initialMap=customAnswers
+      changed=(action (mut customAnswers))
+      allowEmptyValue=true
+      addInitialEmptyRow=true
+      editing=true
+      header=(t "newCatalog.answers.label")
+      addActionLabel="newCatalog.answers.addAction"
+      keyLabel="newContainer.environment.keyLabel"
+      keyPlaceholder="newContainer.environment.keyPlaceholder"
+      valueLabel="newContainer.environment.valueLabel"
+      valuePlaceholder="newContainer.environment.valuePlaceholder"
+    }}
+  {{/advanced-section}}
+</div>
 
 {{save-cancel
   editing=enabled
