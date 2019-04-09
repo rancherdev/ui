@@ -1,0 +1,17 @@
+<section class="header clearfix">
+  <div class="pull-left pt-10"><h1 class="text-capitalize">{{t 'istio.header'}}</h1></div>
+</section>
+
+{{#accordion-list showExpandAll=false  as |al expandFn|}}
+  {{#accordion-list-item
+      classNames="mt-30"
+      expand=(action expandFn)
+      expandAll=al.expandAll
+      expandOnInit=true
+      expanded=true
+      title=(t "istio.serviceGraph.title")
+      detail=(t "istio.serviceGraph.detail")
+  }}
+    {{traffic-monitoring}}
+  {{/accordion-list-item}}
+{{/accordion-list}}

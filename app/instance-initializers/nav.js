@@ -138,6 +138,14 @@ const rootNav = [
         resourceScope:  'project',
         ctx:            [getProjectId],
       },
+      {
+        id:             'tools-istio',
+        localizedLabel: 'nav.tools.istio',
+        route:          'authenticated.project.istio.index',
+        resource:       [],
+        resourceScope:  'project',
+        ctx:            [getProjectId],
+      },
     ]
   },
   // Cluster
