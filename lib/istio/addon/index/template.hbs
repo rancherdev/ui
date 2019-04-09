@@ -2,9 +2,31 @@
   <div class="pull-left pt-10"><h1 class="text-capitalize">{{t 'istio.header'}}</h1></div>
 </section>
 
+<div class="row">
+  {{istio-component-status
+    label="clusterIstioPage.links.kiali.label"
+    url=kialiUrl
+    logo="kiali"
+  }}
+  {{istio-component-status
+    label="clusterIstioPage.links.jaeger.label"
+    url=jaegerUrl
+    logo="jaeger"
+  }}
+  {{istio-component-status
+    label="clusterIstioPage.links.grafana.label"
+    url=grafanaUrl
+    logo="grafana"
+  }}
+  {{istio-component-status
+    label="clusterIstioPage.links.prometheus.label"
+    url=prometheusUrl
+    logo="prometheus-icon"
+  }}
+</div>
+
 {{#accordion-list showExpandAll=false  as |al expandFn|}}
   {{#accordion-list-item
-      classNames="mt-30"
       expand=(action expandFn)
       expandAll=al.expandAll
       expandOnInit=true
@@ -14,4 +36,9 @@
   }}
     {{traffic-monitoring}}
   {{/accordion-list-item}}
+
+  {{traffic-metrics
+    expand=(action expandFn)
+    expandAll=al.expandAll
+  }}
 {{/accordion-list}}

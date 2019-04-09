@@ -47,9 +47,13 @@ clusterIstioPage:
     mtlsEnabled:
       label: Enabled mTLS
 istio:
-  header: Istio
+  header: Istio Dashboard
   noData: Not enough data for graph
   period: Period
+
+  serviceMetrics:
+    title: Metrics
+    detail: Request metrics based on traffic in current project.
   serviceGraph:
     title: Graph
     detail: Versioned app graph based on traffic in current project.
@@ -64,4 +68,10 @@ istio:
       3600: Last 1h
       10800: Last 3h
       21600: Last 6h
+metrics:
+  success-rate: Successs Rate
+  fail-4xx: 4xx Request Count
+  fail-5xx: 5xx Request Count
+  fail-by-service-4xx: 4xx Trends By Service
+  fail-by-service-5xx: 5xx Trends By Service
 
