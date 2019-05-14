@@ -6,7 +6,7 @@ import Resource from '@rancher/ember-api-store/models/resource';
 export const PRESETS = {
   'index.docker.io':                              'dockerhub',
   'quay.io':                                      'quay',
-  [window.location.host]:                         'globalRegistry',
+  [window.location.host]:                          window.location.host,
 }
 
 export const PRESETS_BY_NAME = {};
@@ -61,6 +61,8 @@ var DockerCredential = Resource.extend({
 
     if ( get(this, 'registryCount') > 1 ) {
       return 'cruRegistry.multiple';
+    } else if (address === window.location.host) {
+      return address;
     } else if ( PRESETS[address] ) {
       return `cruRegistry.address.${  PRESETS[address] }`;
     } else {
