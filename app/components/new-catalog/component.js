@@ -38,6 +38,7 @@ export default Component.extend(NewOrEdit, CatalogApp, ChildHook, {
   customizeNamespace:       false,
   decoding:                 false,
   forceUpgrade:             false,
+  isIstio:                  false,
   titleAdd:                 'newCatalog.titleAdd',
   titleUpgrade:             'newCatalog.titleUpgrade',
   selectVersionAdd:         'newCatalog.selectVersionAdd',
@@ -123,7 +124,9 @@ export default Component.extend(NewOrEdit, CatalogApp, ChildHook, {
     },
 
     cancel() {
-      if (this.cancel) {
+      if ( get(this, 'isIstio') ) {
+        get(this, 'router').transitionTo('catalog-tab.index', { queryParams: { istio: 'true',  } });
+      } else if ( this.cancel ) {
         this.cancel();
       }
     },
@@ -420,7 +423,11 @@ export default Component.extend(NewOrEdit, CatalogApp, ChildHook, {
   doneSaving() {
     var projectId = get(this, 'scope.currentProject.id');
 
-    return get(this, 'router').transitionTo('apps-tab.index', projectId);
+    if ( get(this, 'isIstio') ) {
+      return get(this, 'router').transitionTo('authenticated.project.istio.rules', projectId);
+    } else {
+      return get(this, 'router').transitionTo('apps-tab.index', projectId);
+    }
   },
 
   shouldFallBackToYaml() {

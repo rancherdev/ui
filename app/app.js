@@ -209,12 +209,14 @@ const App = Application.extend({
       dependencies: {
         services: [
           'app',
+          'catalog',
           'intl',
           'scope',
           'session',
           'modal',
           'globalStore',
           'router',
+          'store',
           'clusterStore',
           'tooltip',
         ],

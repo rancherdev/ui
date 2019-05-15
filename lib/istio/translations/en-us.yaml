@@ -110,6 +110,17 @@ istio:
   nav:
     graph: Traffic Graph
     metrics: Traffic Metrics
+    rules: Istio Configs
+rulesPage:
+  new: Add Istio Config
+  noMatch: No istio configs match the current search
+  noData: There are no istio configs to show
+ruleDetailPage:
+  header: "Istio Config: {appName}"
+  answers:
+    title: Answers
+    detail: Customized answers of this istio config
+    variable: Variable
 
 projectIstioPage:
   info:

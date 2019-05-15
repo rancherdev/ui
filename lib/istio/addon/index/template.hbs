@@ -1,6 +1,6 @@
 {{#if model.owner}}
   {{#if model.app}}
-    {{istio-nav owner=model.owner}}
+    {{istio-nav}}
     {{traffic-monitoring namespaces=model.namespaces}}
   {{else}}
     {{#banner-message color="bg-info"}}
@@ -13,7 +13,7 @@
     {{/banner-message}}
   {{/if}}
 {{else}}
-  {{istio-nav owner=model.owner}}
+  {{istio-nav}}
   {{#banner-message color="bg-info"}}
     <p>
       {{t "projectIstioPage.info.notOwner"}}
