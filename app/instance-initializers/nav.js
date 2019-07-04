@@ -44,6 +44,8 @@ const rootNav = [
       'authenticated.project.istio.graph',
       'authenticated.project.istio.metrics',
       'authenticated.project.istio.rules',
+      'authenticated.project.istio.destination-rules',
+      'authenticated.project.istio.virtual-services',
     ],
   },
   {
