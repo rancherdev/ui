@@ -21,46 +21,94 @@
     <tbody>
       {{#each tolerationArray as |toleration|}}
         <tr>
-          <td>{{input type="text" class="form-control input-sm" value=toleration.key}}</td>
-          <td>&nbsp;</td>
           <td>
-            {{searchable-select
-              class="form-control input-sm pt-0"
-              content=operatorChoices
+            {{#input-or-display
+              editable=editing
+              value=toleration.key
+            }}
+              {{input
+                type="text"
+                class="form-control input-sm"
+                value=toleration.key
+              }}
+            {{/input-or-display}}
+          </td>
+          <td>
+            &nbsp;
+          </td>
+          <td>
+            {{#input-or-display
+              editable=editing
               value=toleration.operator
             }}
+              {{searchable-select
+                class="form-control input-sm pt-0"
+                content=operatorChoices
+                value=toleration.operator
+              }}
+            {{/input-or-display}}
           </td>
-          <td>&nbsp;</td>
+          <td>
+            &nbsp;
+          </td>
           <td>
             {{#if (eq toleration.operator 'Equal')}}
-              {{input type="text" class="form-control input-sm" value=toleration.value}}
+              {{#input-or-display
+                editable=editing
+                value=toleration.value
+              }}
+                {{input
+                  type="text"
+                  class="form-control input-sm"
+                  value=toleration.value
+                }}
+              {{/input-or-display}}
             {{else}}
               {{t 'generic.na'}}
             {{/if}}
           </td>
-          <td>&nbsp;</td>
           <td>
-            {{searchable-select
-              class="form-control input-sm pt-0"
-              allowCustom=true
-              content=effectChoices
+            &nbsp;
+          </td>
+          <td>
+            {{#input-or-display
+              editable=editing
               value=toleration.effect
             }}
+              {{searchable-select
+                class="form-control input-sm pt-0"
+                allowCustom=true
+                content=effectChoices
+                value=toleration.effect
+              }}
+            {{/input-or-display}}
           </td>
-          <td>&nbsp;</td>
+          <td>
+            &nbsp;
+          </td>
           <td>
             {{#if (eq toleration.effect 'NoExecute')}}
-              {{#input-or-display editable=editing value=toleration.tolerationSeconds}}
+              {{#input-or-display
+                editable=editing
+                value=toleration.tolerationSeconds
+              }}
                 <div class="input-group">
-                  {{input-integer classNames="form-control" value=toleration.tolerationSeconds}}
-                  <span class="input-group-addon bg-default">{{t 'generic.seconds'}}</span>
+                  {{input-integer
+                    classNames="form-control input-sm"
+                    value=toleration.tolerationSeconds
+                  }}
+                  <span class="input-group-addon bg-default">
+                    {{t 'generic.seconds'}}
+                  </span>
                 </div>
               {{/input-or-display}}
             {{else}}
               {{t 'generic.na'}}
             {{/if}}
           </td>
-          <td>&nbsp;</td>
+          <td>
+            &nbsp;
+          </td>
           {{#if editing}}
             <div class="input-group-btn">
               <button class="btn bg-primary btn-sm" {{action "removeToleration" toleration}}><i class="icon icon-minus"/></button>
