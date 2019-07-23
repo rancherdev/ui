@@ -54,6 +54,14 @@ export default Resource.extend(Grafana, ResourceUsage, {
     }
   })),
 
+  readyStatusChanged: on('init', observer('conditions.@each.status', function() {
+    const clusterStatus = !!this.hasCondition('Ready');
+
+    if ( clusterStatus !== get(this, 'isReady') ) {
+      set(this, 'isReady', clusterStatus);
+    }
+  })),
+
   getAltActionDelete: computed('action.remove', function() { // eslint-disable-line
     return get(this, 'canBulkRemove') ? 'delete' : null;
   }),
