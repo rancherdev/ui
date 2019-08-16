@@ -1,0 +1,8 @@
+stages:
+- name: done
+  steps:
+  - runScriptConfig:
+      image: python:latest
+      shellScript: print("test done")
+timeout: 60
+notification: {}
